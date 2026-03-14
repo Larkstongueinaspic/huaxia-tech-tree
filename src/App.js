@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect, useRef } from "react";
-import { NODES, EDGES, POS, CAT, ADJ, RADJ, NMAP, bfsFrom, dfsFrom } from './data'
+import { fetchAllData, runBFS, runDFS } from './services/api'
 
 /* ══════════════════════════════════════════════════════════════════
    COMPONENT
@@ -11,7 +11,39 @@ export default function HuaxiaTechTree() {
   const [si,      setSi]      = useState(0)
   const [playing, setPlaying] = useState(false)
   const [tab,     setTab]     = useState("graph")
+  const [loading, setLoading] = useState(true)
+  const [error,   setError]   = useState(null)
+
+  // Data from API
+  const [NODES, setNODES] = useState([])
+  const [EDGES, setEDGES] = useState([])
+  const [POS,   setPOS]   = useState({})
+  const [CAT,   setCAT]   = useState({})
+  const [ADJ,   setADJ]   = useState({})
+  const [RADJ,  setRADJ]  = useState({})
+  const [NMAP,  setNMAP]  = useState({})
+
   const timerRef = useRef(null)
+
+  // Fetch data on mount
+  useEffect(() => {
+    fetchAllData()
+      .then(data => {
+        setNODES(data.nodes);
+        setEDGES(data.edges);
+        setPOS(data.positions);
+        setCAT(data.categories);
+        setADJ(data.adj);
+        setRADJ(data.radj);
+        setNMAP(data.nmap);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error('Failed to fetch data:', err);
+        setError('Failed to load data');
+        setLoading(false);
+      });
+  }, [])
 
   const step = steps[si] ?? null
 
@@ -33,8 +65,10 @@ export default function HuaxiaTechTree() {
   const onNode = useCallback((id)=>{
     setSel(id)
     if(mode!=="explore"){
-      const s=mode==="bfs"?bfsFrom(id):dfsFrom(id)
-      setSteps(s); setSi(0); setPlaying(false)
+      const algo = mode==="bfs" ? runBFS : runDFS;
+      algo(id).then(s => {
+        setSteps(s); setSi(0); setPlaying(false)
+      });
     }
   },[mode])
 
@@ -69,6 +103,33 @@ export default function HuaxiaTechTree() {
   )
 
   const modeColor = mode==="bfs"?"74,144,217":mode==="dfs"?"46,204,113":"200,160,69"
+
+  if (loading) {
+    return (
+      <div style={{
+        width:"100vw",height:"100vh",background:"#080a0f",
+        display:"flex",alignItems:"center",justifyContent:"center",
+        flexDirection:"column",gap:16
+      }}>
+        <div style={{fontFamily:'"ZCOOL XiaoWei",serif',fontSize:24,color:"#c8a045",letterSpacing:4}}>华夏科技树</div>
+        <div style={{fontSize:12,color:"rgba(200,160,69,.4)"}}>加载数据中...</div>
+      </div>
+    )
+  }
+
+  if (error) {
+    return (
+      <div style={{
+        width:"100vw",height:"100vh",background:"#080a0f",
+        display:"flex",alignItems:"center",justifyContent:"center",
+        flexDirection:"column",gap:16
+      }}>
+        <div style={{fontFamily:'"ZCOOL XiaoWei",serif',fontSize:24,color:"#e74c3c",letterSpacing:4}}>加载失败</div>
+        <div style={{fontSize:12,color:"rgba(255,255,255,.4)"}}>{error}</div>
+        <div style={{fontSize:11,color:"rgba(200,160,69,.5)",marginTop:8}}>请确保后端服务器已启动: cd server && node index.js</div>
+      </div>
+    )
+  }
 
   return (
     <div style={{
