@@ -187,10 +187,11 @@ export function GraphView({
 
         {/* 时间轴位置常量：统一控制高低 */}
         {(() => {
-          const TL_Y = 44;           // 主轴纵坐标（原来 44）
-          const TL_BAR_Y = 36;       // 朝代色块纵坐标（原来 36）
-          const TL_NAME_Y = 28;      // 朝代名称文字（原来 28）
-          const TL_YEAR_Y = 60;      // 起始年份文字（原来 60）
+          const TL_base = 12;
+          const TL_Y = TL_base + 24;           // 主轴纵坐标（原来 44）
+          const TL_BAR_Y = TL_base + 16;       // 朝代色块纵坐标（原来 36）
+          const TL_NAME_Y = TL_base + 8;      // 朝代名称文字（原来 28）
+          const TL_YEAR_Y = TL_base + 40;      // 起始年份文字（原来 60）
 
           
           // 计算每个时期的带scale的年份跨度，用于确定时间轴上的位置
