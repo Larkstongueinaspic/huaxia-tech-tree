@@ -10,7 +10,7 @@
 //   - 点击节点可查看发明详情、前驱/后继关系
 // ============================================================、
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 
 import { useGraphData } from "./hooks/useGraphData";
 import { usePanZoom } from "./hooks/usePanZoom";
@@ -38,6 +38,7 @@ export default function HuaxiaTechTree() {
     scale,
     isDragging,
     viewportRef,
+    setBounds,
     handlers,
     actions,
   } = usePanZoom();
@@ -60,6 +61,30 @@ export default function HuaxiaTechTree() {
   const EDGES = useMemo(() => deriveEdges(NODES, ADJ), [NODES, ADJ]);
   const step = steps[si] ?? null;
   const selD = sel ? NMAP[sel] : null;
+
+  // 设置画布左右拖动范围限制
+  useEffect(() => {
+    if (NODES.length === 0 || Object.keys(POS).length === 0) return;
+
+    // 等待 viewportRef.current 设置后再执行
+    const timeoutId = setTimeout(() => {
+      const viewportEl = viewportRef.current;
+      if (!viewportEl) return;
+
+      const rect = viewportEl.getBoundingClientRect();
+      const viewportWidth = rect.width;
+
+      // 计算节点的实际左右边界
+      const xValues = Object.values(POS).map((p) => p.x);
+      const minNodeX = Math.min(...xValues);
+      const maxNodeX = Math.max(...xValues);
+
+      // 传入节点坐标和视口宽度，由 usePanZoom 动态计算 bounds
+      setBounds(minNodeX, maxNodeX, viewportWidth);
+    }, 0);
+
+    return () => clearTimeout(timeoutId);
+  }, [NODES, POS, viewportRef, setBounds]);
 
   if (loading) return <LoadingScreen />;
   if (error) return <ErrorScreen error={error} />;

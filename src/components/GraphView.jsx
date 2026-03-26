@@ -21,14 +21,14 @@ export function GraphView({
   onNode,
   handlers,
   actions,
-  viewportRef,     // 新增
-  isDragging,      // 新增
-  timelineConfig,   // 从 props 传入，不再从 constants 导入
+  viewportRef,
+  isDragging,
+  timelineConfig,
 }) {
   return (
     <>
       <svg
-        ref={viewportRef}   // 新增：绑定画布 ref
+        ref={viewportRef}
         viewBox={VIEW_BOX}
         preserveAspectRatio="xMidYMin meet"
         style={{

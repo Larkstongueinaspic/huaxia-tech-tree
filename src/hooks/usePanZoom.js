@@ -31,6 +31,30 @@ export function usePanZoom() {
 
   const scaleRef = useRef(1);
 
+  // pan x 范围限制配置：节点世界坐标和视口宽度
+  // 约束：pan.x + minNodeX * scale >= viewportWidth / 2
+  //       pan.x + maxNodeX * scale <= viewportWidth / 2
+  const boundsConfigRef = useRef({ minNodeX: 0, maxNodeX: 0, viewportWidth: Infinity });
+
+  // 设置动态 bounds 配置（节点坐标和视口宽度）
+  const setBoundsConfig = useCallback((minNodeX, maxNodeX, viewportWidth) => {
+    boundsConfigRef.current = { minNodeX, maxNodeX, viewportWidth };
+  }, []);
+
+  // 根据当前 scale 动态计算并应用 pan x 范围限制
+  const clampPanX = useCallback((x) => {
+    const { minNodeX, maxNodeX, viewportWidth } = boundsConfigRef.current;
+    const currentScale = scaleRef.current;
+    if (!isFinite(viewportWidth)) return x;
+
+    // 左侧：最左节点最多到视口中央
+    const minPanX = viewportWidth / 2 - maxNodeX * currentScale;
+    // 右侧：最右节点最多到视口中央
+    const maxPanX = viewportWidth / 2 - minNodeX * currentScale;
+
+    return Math.max(minPanX, Math.min(maxPanX, x));
+  }, []);
+
   // 通用缩放函数：以容器内某个锚点(anchorX, anchorY)进行缩放
   const zoomAt = useCallback((anchorX, anchorY, targetScale) => {
     const oldScale = scaleRef.current;
@@ -43,7 +67,7 @@ export function usePanZoom() {
     const worldY = (anchorY - panRef.current.y) / oldScale;
 
     // 缩放后重新计算 pan，让这个世界坐标仍然停留在 anchor 上
-    const newPanX = anchorX - worldX * newScale;
+    const newPanX = clampPanX(anchorX - worldX * newScale);
     const newPanY = anchorY - worldY * newScale;
 
     scaleRef.current = newScale;
@@ -110,7 +134,7 @@ export function usePanZoom() {
     panRef.current.startY = e.clientY;
 
     const newPan = {
-      x: panRef.current.x + dx,
+      x: clampPanX(panRef.current.x + dx),
       y: panRef.current.y + dy,
     };
 
@@ -183,6 +207,8 @@ export function usePanZoom() {
     panRef,
     scaleRef,
     viewportRef,
+    boundsConfigRef,
+    setBounds: setBoundsConfig,
     handlers: {
       onWheel,
       onMouseDown,
