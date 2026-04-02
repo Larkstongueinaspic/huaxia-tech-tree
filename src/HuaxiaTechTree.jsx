@@ -88,7 +88,7 @@ export default function HuaxiaTechTree() {
     onNode,
   } = useTraversal();
 
-  useAutoPlay(playing, steps.length, setSi, setPlaying);
+  useAutoPlay(playing, steps.length, setSi, setPlaying, steps, actions.panToNode, POS, si);
 
   // sel 变化时自动平移到目标节点
   useEffect(() => {
