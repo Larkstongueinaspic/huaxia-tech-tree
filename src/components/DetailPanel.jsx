@@ -52,6 +52,7 @@ export const DetailPanel = React.memo(function DetailPanel({ selD, CAT, ADJ, RAD
           display: "flex",
           flexDirection: "column",
           gap: 11,
+          flex: 1,
         }}>
       {selD ? (
         <div style={{ animation: "fadeIn .3s ease" }}>
@@ -92,6 +93,12 @@ export const DetailPanel = React.memo(function DetailPanel({ selD, CAT, ADJ, RAD
                 `${CAT[selD.cat]?.color}15`,
                 `${CAT[selD.cat]?.color}40`,
                 CAT[selD.cat]?.color,
+              ],
+              [
+                `cat: ${selD.cat}`,
+                "rgba(139,105,20,.04)",
+                "rgba(139,105,20,.1)",
+                "#a08060",
               ],
             ].map(([txt, bg, border, col], i) => (
               <span
