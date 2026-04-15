@@ -6,7 +6,7 @@
 import React from "react";
 import { Btn } from "./ui/Btn";
 
-export const Header = React.memo(function Header({ mode, setMode, tab, setTab, setSteps, setSi, setPlaying, autoCollapse, setAutoCollapse, idleTimeout, setIdleTimeout }) {
+export const Header = React.memo(function Header({ mode, setMode, tab, setTab, setSteps, setSi, setPlaying, autoCollapse, setAutoCollapse, idleTimeout, setIdleTimeout, onSearchClick }) {
   const handleModeChange = (newMode) => {
     setMode(newMode);
     setSteps([]);
@@ -79,6 +79,14 @@ export const Header = React.memo(function Header({ mode, setMode, tab, setTab, s
       </div>
 
       <div style={{ display: "flex", gap: 6 }}>
+        <Btn
+          active={false}
+          col="200,160,69"
+          onClick={onSearchClick}
+          title="按 Cmd+K 或 Ctrl+K 快速搜索"
+        >
+          🔍 搜索
+        </Btn>
         <Btn
           active={tab === "graph"}
           col="200,160,69"

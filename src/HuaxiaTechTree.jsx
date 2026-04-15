@@ -24,6 +24,8 @@ import { GraphView } from "./components/GraphView";
 import { AdjListView } from "./components/AdjListView";
 import { DetailPanel } from "./components/DetailPanel";
 import { BottomBar } from "./components/BottomBar";
+import { SearchModal } from "./components/SearchModal";
+import { WelcomeGuide } from "./components/WelcomeGuide";
 import { LoadingScreen, ErrorScreen } from "./components/StateScreen";
 
 import { modeColor } from "./utils/constants";
@@ -35,6 +37,7 @@ export default function HuaxiaTechTree() {
   const [rightOpen, setRightOpen] = useState(true);
   const [autoCollapse, setAutoCollapse] = useState(false);
   const [idleTimeout, setIdleTimeout] = useState(15000);
+  const [searchOpen, setSearchOpen] = useState(false);
 
   const isIdle = useIdleTimer(idleTimeout, autoCollapse);
 
@@ -61,6 +64,19 @@ export default function HuaxiaTechTree() {
     }
     setPrevIdle(isIdle);
   }, [autoCollapse, isIdle, prevIdle]);
+
+  // 处理全局快捷键 Cmd+K / Ctrl+K 打开搜索
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+        e.preventDefault();
+        setSearchOpen(true);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   const { NODES, POS, CAT, ADJ, RADJ, NMAP, timelineConfig, loading, error } = useGraphData();
 
@@ -162,6 +178,7 @@ export default function HuaxiaTechTree() {
         setAutoCollapse={setAutoCollapse}
         idleTimeout={idleTimeout}
         setIdleTimeout={setIdleTimeout}
+        onSearchClick={() => setSearchOpen(true)}
       />
 
       <div style={{ flex: 1, display: "flex", overflow: "hidden" }}>
@@ -256,6 +273,18 @@ export default function HuaxiaTechTree() {
       </div>
 
       <BottomBar step={step} mode={mode} NMAP={NMAP} />
+
+      {/* 搜索模态框 */}
+      <SearchModal
+        NODES={NODES}
+        CAT={CAT}
+        onSelect={onNode}
+        isOpen={searchOpen}
+        onClose={() => setSearchOpen(false)}
+      />
+
+      {/* 新手引导 */}
+      <WelcomeGuide />
     </div>
   );
 }

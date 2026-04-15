@@ -1,0 +1,241 @@
+/* ============================================================
+ * SearchModal.css
+ * 搜索模态框样式
+ * ============================================================ */
+
+.search-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: calc(var(--z-modal) - 1);
+  animation: fadeIn var(--duration-fast) var(--easing-ease-out);
+}
+
+.search-modal-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: var(--z-modal);
+  width: calc(100% - 32px);
+  max-width: 600px;
+  max-height: 600px;
+  animation: scaleIn var(--duration-base) var(--easing-spring);
+}
+
+.search-modal {
+  background: var(--color-bg-paper);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xl);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  max-height: 600px;
+}
+
+/* ========== 输入框区域 ========== */
+
+.search-modal-input-wrapper {
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-4);
+  border-bottom: 1px solid var(--color-border-light);
+  gap: var(--spacing-3);
+}
+
+.search-modal-icon {
+  color: var(--color-text-muted);
+  flex-shrink: 0;
+}
+
+.search-modal-input {
+  flex: 1;
+  border: none;
+  background: none;
+  font: var(--font-weight-regular) var(--font-size-base) / var(--line-height-normal) var(--font-ui);
+  color: var(--color-text);
+  outline: none;
+  padding: 0;
+}
+
+.search-modal-input::placeholder {
+  color: var(--color-text-muted);
+}
+
+.search-modal-clear {
+  background: none;
+  border: none;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  padding: var(--spacing-1);
+  font-size: var(--font-size-base);
+  line-height: 1;
+  transition: color var(--duration-fast) var(--easing-ease-out);
+  flex-shrink: 0;
+}
+
+.search-modal-clear:hover {
+  color: var(--color-text);
+}
+
+/* ========== 结果列表 ========== */
+
+.search-modal-results {
+  overflow-y: auto;
+  flex: 1;
+  min-height: 200px;
+  max-height: 400px;
+}
+
+.search-modal-empty {
+  padding: var(--spacing-8);
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-base);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-modal-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.search-modal-item {
+  padding: var(--spacing-3) var(--spacing-4);
+  cursor: pointer;
+  border-bottom: 1px solid var(--color-border-light);
+  transition: background-color var(--duration-fast) var(--easing-ease-out);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-4);
+}
+
+.search-modal-item:last-child {
+  border-bottom: none;
+}
+
+.search-modal-item:hover {
+  background-color: rgba(139, 90, 43, 0.08);
+}
+
+.search-modal-item.selected {
+  background-color: rgba(139, 90, 43, 0.12);
+}
+
+.search-modal-item-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.search-modal-item-name {
+  font: var(--font-weight-semibold) var(--font-size-base) / var(--line-height-tight) var(--font-serif);
+  color: var(--color-text);
+  margin-bottom: var(--spacing-1);
+}
+
+.search-modal-item-en {
+  font: var(--font-weight-regular) var(--font-size-sm) / var(--line-height-tight) var(--font-ui);
+  color: var(--color-text-secondary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.search-modal-item-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  flex-shrink: 0;
+}
+
+.search-modal-item-category {
+  display: inline-block;
+  padding: var(--spacing-1) var(--spacing-2);
+  background-color: rgba(139, 90, 43, 0.1);
+  border-radius: var(--radius-sm);
+  font: var(--font-weight-regular) var(--font-size-xs) / var(--line-height-tight) var(--font-ui);
+  color: var(--color-primary);
+  white-space: nowrap;
+}
+
+.search-modal-item-year {
+  font: var(--font-weight-regular) var(--font-size-sm) / var(--line-height-tight) var(--font-mono);
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+}
+
+/* ========== 帮助提示 ========== */
+
+.search-modal-help {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: var(--spacing-4);
+  padding: var(--spacing-3) var(--spacing-4);
+  border-top: 1px solid var(--color-border-light);
+  background: rgba(139, 90, 43, 0.02);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.search-modal-help-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.search-modal-help-key {
+  display: inline-block;
+  padding: var(--spacing-1) var(--spacing-2);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font: var(--font-weight-medium) var(--font-size-xs) / 1 var(--font-mono);
+  color: var(--color-text);
+}
+
+/* ========== 响应式 ========== */
+
+@media (max-width: 768px) {
+  .search-modal-container {
+    max-width: calc(100% - 32px);
+    top: 100px;
+    transform: translate(-50%, 0);
+  }
+
+  .search-modal-results {
+    max-height: 300px;
+  }
+
+  .search-modal-item-meta {
+    flex-direction: column;
+    align-items: flex-end;
+  }
+}
+
+/* ========== 滚动条样式 ========== */
+
+.search-modal-results::-webkit-scrollbar {
+  width: 6px;
+}
+
+.search-modal-results::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.search-modal-results::-webkit-scrollbar-thumb {
+  background: rgba(139, 90, 43, 0.2);
+  border-radius: 3px;
+}
+
+.search-modal-results::-webkit-scrollbar-thumb:hover {
+  background: rgba(139, 90, 43, 0.4);
+}

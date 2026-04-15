@@ -1,0 +1,120 @@
+/* ============================================================
+ * GraphView.css
+ * GraphView 组件的样式和动画
+ * ============================================================ */
+
+/* SVG 容器 */
+.graph-view-svg {
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-bg);
+}
+
+/* SVG 节点组 */
+.graph-node {
+  transition: filter var(--duration-base) var(--easing-ease-in-out);
+}
+
+.graph-node:hover .node-circle-primary {
+  filter: drop-shadow(0 0 8px rgba(139, 90, 43, 0.4));
+  animation: nodeScalePulse var(--duration-base) var(--easing-ease-in-out) forwards;
+}
+
+.graph-node.selected .node-circle-primary {
+  animation: nodeSelectBounce var(--duration-base) var(--easing-spring) forwards;
+  filter: drop-shadow(var(--shadow-accent));
+}
+
+/* 节点圆形 - 背景辅助圆 */
+.node-ring {
+  opacity: 0;
+  transition: opacity var(--duration-base) var(--easing-ease-out);
+}
+
+.graph-node:hover .node-ring,
+.graph-node.selected .node-ring {
+  opacity: 0.1;
+}
+
+/* 节点圆形 - 主圆 */
+.node-circle-primary {
+  transition: stroke var(--duration-base) var(--easing-ease-out),
+              r var(--duration-base) var(--easing-ease-out),
+              fill var(--duration-base) var(--easing-ease-out);
+}
+
+/* 节点悬停后增大半径 */
+.graph-node:hover .node-circle-primary {
+  r: calc(var(--svg-node-radius) * 1.08);
+}
+
+/* 节点当前/选中时的脉冲动画 */
+.node-pulse-ring {
+  animation: nodePulse var(--duration-slower) ease-in-out infinite;
+}
+
+/* SVG 边 */
+.graph-edge {
+  transition: stroke var(--duration-base) var(--easing-ease-out),
+              stroke-width var(--duration-base) var(--easing-ease-out),
+              opacity var(--duration-base) var(--easing-ease-out);
+}
+
+/* 边悬停效果 */
+.graph-edge:hover {
+  stroke-width: calc(var(--svg-edge-width-normal) * 1.5);
+  filter: drop-shadow(0 0 4px rgba(139, 90, 43, 0.3));
+}
+
+/* 边的流光效果（主动边） */
+.graph-edge.active {
+  animation: flowEdge 0.8s linear infinite;
+  stroke-dasharray: 4, 3;
+  stroke-dashoffset: 0;
+}
+
+/* 时间轴 */
+.graph-timeline-shape {
+  transition: opacity var(--duration-base) var(--easing-ease-out);
+  opacity: 0.8;
+}
+
+.graph-timeline-shape:hover {
+  opacity: 1;
+  filter: drop-shadow(0 0 4px rgba(139, 90, 43, 0.4));
+}
+
+/* 节点文字 */
+.node-text {
+  transition: opacity var(--duration-base) var(--easing-ease-out);
+  user-select: none;
+}
+
+/* ========== 响应式缩放 ========== */
+
+/* 按比例缩放（100+节点时） */
+@media (max-width: 1600px) {
+  .graph-node:hover .node-circle-primary {
+    r: calc(var(--svg-node-radius) * 1.05);
+  }
+}
+
+/* ========== 性能优化 ========== */
+
+/* 禁用不必要的动画在低速设备上 */
+@media (prefers-reduced-motion: reduce) {
+  .graph-node,
+  .graph-edge,
+  .node-circle-primary,
+  .node-pulse-ring {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* 深色模式支持（预留） */
+@media (prefers-color-scheme: dark) {
+  .graph-view-svg {
+    background-color: var(--color-bg);
+  }
+}

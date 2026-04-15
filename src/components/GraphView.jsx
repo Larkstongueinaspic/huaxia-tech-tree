@@ -6,6 +6,8 @@
 import React from "react";
 import { NODE_RADIUS, VIEW_BOX } from "../utils/constants";
 import { nState, eState, edgePath } from "../utils/graphUtils";
+import { NodeTooltip } from "./NodeTooltip";
+import "../styles/GraphView.css";
 
 export const GraphView = React.memo(function GraphView({
   NODES,
@@ -26,6 +28,8 @@ export const GraphView = React.memo(function GraphView({
   isDragging,
   timelineConfig,
 }) {
+  const [hoveredNode, setHoveredNode] = React.useState(null);
+  const [tooltipPos, setTooltipPos] = React.useState({ x: 0, y: 0 });
   return (
     <>
       <svg
@@ -73,18 +77,18 @@ export const GraphView = React.memo(function GraphView({
         <g transform={`translate(${pan.x},${pan.y}) scale(${scale})`}>
           {EDGES.map((e, i) => {
             const st = eState(e.from, e.to, step, mode);
-            const [clr, sw, mk, opacity] =
+            const [clr, sw, mk, opacity, isActive] =
               st === "active"
-                ? ["#e74c3c", 2.5, "aA", 1]
+                ? ["#e74c3c", 2.5, "aA", 1, true]
               : st === "path"
-                ? ["#e74c3c", 3.5, "aP", 1]
+                ? ["#e74c3c", 3.5, "aP", 1, false]
               : st === "done"
-                ? ["#e67e22", 2.0, "aO", 1]
+                ? ["#e67e22", 2.0, "aO", 1, false]
               : st === "idle"
-                ? ["rgba(139,105,20,.35)", 1.5, "a0", 1]
+                ? ["rgba(139,105,20,.35)", 1.5, "a0", 1, false]
               : st === "faded"
-                ? ["rgba(139,105,20,.18)", 1.0, "a0", 0.25]
-              : ["rgba(139,105,20,.35)", 1.5, "a0", 1];
+                ? ["rgba(139,105,20,.18)", 1.0, "a0", 0.25, false]
+              : ["rgba(139,105,20,.35)", 1.5, "a0", 1, false];
 
             return (
               <path
@@ -95,7 +99,10 @@ export const GraphView = React.memo(function GraphView({
                 strokeWidth={sw}
                 markerEnd={`url(#${mk})`}
                 opacity={opacity}
-                style={{ transition: "stroke .35s,stroke-width .35s,opacity .35s" }}
+                className={`graph-edge ${isActive ? 'active' : ''}`}
+                style={{ 
+                  transition: "stroke .35s,stroke-width .35s,opacity .35s"
+                }}
               />
             );
           })}
@@ -126,12 +133,22 @@ export const GraphView = React.memo(function GraphView({
             return (
               <g
                 key={node.id}
+                className={`graph-node ${isSel ? 'selected' : ''}`}
                 transform={`translate(${p.x},${p.y})`}
                 onClick={() => onNode(node.id)}
+                onMouseEnter={(e) => {
+                  const rect = e.currentTarget.getBoundingClientRect();
+                  setHoveredNode(node);
+                  setTooltipPos({
+                    x: rect.left + rect.width / 2,
+                    y: rect.top - 8,
+                  });
+                }}
+                onMouseLeave={() => setHoveredNode(null)}
                 style={{ cursor: "pointer" }}
               >
                 {st === "current" && (
-                  <circle r={NODE_RADIUS + 14} fill="#e74c3c" opacity=".08">
+                  <circle r={NODE_RADIUS + 14} fill="#e74c3c" opacity=".08" className="node-pulse-ring">
                     <animate
                       attributeName="r"
                       values={`${NODE_RADIUS + 10};${NODE_RADIUS + 20};${NODE_RADIUS + 10}`}
@@ -152,6 +169,7 @@ export const GraphView = React.memo(function GraphView({
                     r={NODE_RADIUS + 7}
                     fill={isSel && st === "idle" ? "#c8a045" : rc}
                     opacity={st === "faded" ? ".05" : ".1"}
+                    className="node-ring"
                   />
                 )}
 
@@ -162,25 +180,26 @@ export const GraphView = React.memo(function GraphView({
                   stroke={rc}
                   strokeWidth={rw}
                   opacity={st === "faded" ? 0.4 : 1}
-                  style={{ transition: "stroke .3s,opacity .3s" }}
+                  className="node-circle-primary"
+                  style={{ transition: "stroke .3s,opacity .3s,r .3s" }}
                 />
 
                 {nl <= 3 && (
-                  <text y="3" textAnchor="middle" fontSize="11" fill="#2c2416" fontFamily='"Noto Serif SC"' fontWeight="700" opacity={st === "faded" ? 0.4 : 1}>
+                  <text y="3" textAnchor="middle" fontSize="11" fill="#2c2416" fontFamily='"Noto Serif SC"' fontWeight="700" opacity={st === "faded" ? 0.4 : 1} className="node-text">
                     {nm}
                   </text>
                 )}
                 {nl === 4 && (
-                  <text y="3" textAnchor="middle" fontSize="9.5" fill="#2c2416" fontFamily='"Noto Serif SC"' fontWeight="700" opacity={st === "faded" ? 0.4 : 1}>
+                  <text y="3" textAnchor="middle" fontSize="9.5" fill="#2c2416" fontFamily='"Noto Serif SC"' fontWeight="700" opacity={st === "faded" ? 0.4 : 1} className="node-text">
                     {nm}
                   </text>
                 )}
                 {nl > 4 && (
                   <>
-                    <text y="-6" textAnchor="middle" fontSize="9" fill="#2c2416" fontFamily='"Noto Serif SC"' fontWeight="700" opacity={st === "faded" ? 0.4 : 1}>
+                    <text y="-6" textAnchor="middle" fontSize="9" fill="#2c2416" fontFamily='"Noto Serif SC"' fontWeight="700" opacity={st === "faded" ? 0.4 : 1} className="node-text">
                       {nm.slice(0, 4)}
                     </text>
-                    <text y="5" textAnchor="middle" fontSize="9" fill="#2c2416" fontFamily='"Noto Serif SC"' fontWeight="700" opacity={st === "faded" ? 0.4 : 1}>
+                    <text y="5" textAnchor="middle" fontSize="9" fill="#2c2416" fontFamily='"Noto Serif SC"' fontWeight="700" opacity={st === "faded" ? 0.4 : 1} className="node-text">
                       {nm.slice(4)}
                     </text>
                   </>
@@ -193,6 +212,7 @@ export const GraphView = React.memo(function GraphView({
                   fill="rgba(90,74,56,.5)"
                   fontFamily='"JetBrains Mono"'
                   opacity={st === "faded" ? 0.4 : 1}
+                  className="node-text"
                 >
                   {node.year < 0 ? `${Math.abs(node.year)}BC` : `${node.year}AD`}
                 </text>
@@ -386,6 +406,14 @@ export const GraphView = React.memo(function GraphView({
           ⌂
         </button>
       </div>
+
+      {/* Tooltip 显示 */}
+      <NodeTooltip
+        node={hoveredNode}
+        CAT={CAT}
+        position={tooltipPos}
+        isVisible={hoveredNode !== null && !isDragging}
+      />
     </>
   );
 });

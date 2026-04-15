@@ -51,6 +51,26 @@ function computePositions(nodes) {
   const maxX = svgWidth - 60;
   const TIMELINE_SCALE = 10; // 时间轴延长倍数（与前端一致）
 
+  // ========== 分类高度区间映射 ==========
+  // 限制每个分类的 lane 范围，实现分类分区布局
+  const CATEGORY_LANES = {
+    craft:       { minLane: 0, maxLane: 2 },    // 工艺 - 上部
+    textile:     { minLane: 0, maxLane: 2 },    // 纺织 - 上部
+    metallurgy:  { minLane: 0, maxLane: 2 },    // 冶金 - 上部
+    agriculture: { minLane: 0, maxLane: 1 },    // 农业 - 最上部
+    
+    culture:     { minLane: 2, maxLane: 4 },    // 文化 - 中部
+    science:     { minLane: 2, maxLane: 4 },    // 科学 - 中部
+    math:        { minLane: 2, maxLane: 4 },    // 数学 - 中部
+    
+    medicine:    { minLane: 4, maxLane: 5 },    // 医学 - 中下部
+    navigation:  { minLane: 4, maxLane: 5 },    // 航海 - 中下部
+    trade:       { minLane: 4, maxLane: 6 },    // 贸易 - 中下部
+    
+    engineering: { minLane: 5, maxLane: 7 },    // 工程 - 下部
+    military:    { minLane: 5, maxLane: 7 },    // 军事 - 下部
+  };
+
   // 计算总加权跨度
   let totalWeightedYears = 0;
   timelineConfig.forEach(({ start, end, scale }) => {
@@ -64,7 +84,7 @@ function computePositions(nodes) {
   const laneHeight = 80;
   const startY = 90;
   const getLaneY = (lane) => startY + lane * laneHeight;
-  const initialLanes = 5;
+  const initialLanes = 8;  // 增加初始 lanes 数量以支持分类分区
   let laneLastX = new Array(initialLanes).fill(baseX);
 
   // 碰撞阈值（加权年份差距）
@@ -88,17 +108,30 @@ function computePositions(nodes) {
       }
     };
 
-    // 分配 lane：找到第一个不碰撞的 lane
-    let assignedLane = 0;
-    const totalLanes = laneLastX.length;
-    for (let lane = 0; lane < totalLanes; lane++) {
+    // ========== 改进的 lane 分配逻辑 ==========
+    // 1. 获取该分类的优先 lane 范围
+    const catConfig = CATEGORY_LANES[n.cat] || { minLane: 0, maxLane: laneLastX.length - 1 };
+    let assignedLane = -1;
+
+    // 2. 优先在分类范围内寻找合适的 lane
+    for (let lane = catConfig.minLane; lane <= catConfig.maxLane; lane++) {
+      ensureLanes(lane + 1);
       if (x - laneLastX[lane] >= yearGapThreshold) {
         assignedLane = lane;
         break;
       }
-      // 最后一个 lane 有碰撞？扩展新 lane
-      if (lane === totalLanes - 1) {
-        assignedLane = totalLanes;
+    }
+
+    // 3. 如果分类范围内没有可用的 lane，扩展到相邻 lane
+    if (assignedLane === -1) {
+      // 向下扩展一个 lane
+      const expandedLane = catConfig.maxLane + 1;
+      ensureLanes(expandedLane + 1);
+      if (x - laneLastX[expandedLane] >= yearGapThreshold) {
+        assignedLane = expandedLane;
+      } else {
+        // 创建新 lane
+        assignedLane = laneLastX.length;
         ensureLanes(assignedLane + 1);
       }
     }
