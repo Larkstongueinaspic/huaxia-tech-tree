@@ -4,7 +4,7 @@
 
 ### 1.1 项目目标
 
-华夏科技树（Huaxia Tech Tree）是一个交互式数据可视化项目，旨在展示中国从新石器时代到宋代（约公元前7000年至公元1232年）的重大技术发明与文明发展历程。该项目通过有向无环图（DAG）的形式，呈现20项中国古代发明之间的技术传承与依赖关系，并提供BFS（广度优先搜索）和DFS（深度优先搜索）算法的可视化演示。
+华夏科技树（Huaxia Tech Tree）是一个交互式数据可视化项目，旨在展示中国从新石器时代到宋代（约公元前7000年至公元1232年）的重大技术发明与文明发展历程。该项目通过有向无环图（DAG）的形式，呈现约144项中国古代技术创新之间的技术传承与依赖关系，并提供BFS（广度优先搜索）和DFS（深度优先搜索）算法的可视化演示。
 
 ### 1.2 核心功能
 
@@ -16,7 +16,7 @@
 
 ### 1.3 使用场景
 
-- 教育领域：用于数据结构与算法教学（中国20项发明作为案例）
+- 教育领域：用于数据结构与算法教学（约144项中国古代发明作为案例）
 - 历史科普：展示中国古代科技成就
 - 技术演示：图论算法的交互式可视化
 
@@ -38,7 +38,7 @@
 | 前端UI层 | React 19 | 图谱渲染、用户交互、状态管理 |
 | API服务层 | Fetch API | 前后端通信封装 |
 | 后端数据层 | Express 5 + JSON | 数据存储、图算法实现 |
-| 数据文件 | JSON | 节点、边、类别、位置信息 |
+| 数据文件 | JSON | 节点、类别信息 |
 
 ### 2.3 模块之间关系
 
@@ -46,11 +46,14 @@
 ┌─────────────────────────────────────────────────────────────┐
 │                      React Frontend (Port 3000)             │
 ├─────────────────────────────────────────────────────────────┤
-│  App.js (主组件)                                           │
-│    ├── 状态管理 (useState)                                  │
-│    ├── SVG图渲染                                            │
-│    ├── 用户交互处理                                         │
-│    └── API调用 (services/api.js)                           │
+│  App.js (入口) → HuaxiaTechTree.jsx (主组件)               │
+│    ├── hooks/ (状态管理)                                    │
+│    │     ├── useGraphData (数据获取)                        │
+│    │     ├── usePanZoom (缩放平移)                          │
+│    │     ├── useTraversal (遍历状态)                        │
+│    │     └── useAutoPlay (自动播放)                         │
+│    ├── components/ (UI组件)                                 │
+│    └── services/api.js (API调用)                            │
 └─────────────────────────────────────────────────────────────┘
                               │
                     HTTP JSON API
@@ -59,8 +62,9 @@
 │                      Express Server (Port 5000)             │
 ├─────────────────────────────────────────────────────────────┤
 │  index.js                                                   │
-│    ├── 数据加载 (./data/*.json)                             │
-│    ├── 邻接表构建                                           │
+│    ├── 数据加载 (nodes.json)                                │
+│    ├── 邻接表构建 (ADJ/RADJ/NMAP)                           │
+│    ├── 动态坐标计算 (POS)                                   │
 │    └── 算法实现 (BFS/DFS)                                  │
 └─────────────────────────────────────────────────────────────┘
 ```
@@ -83,11 +87,10 @@
    ↓
 3. 浏览器访问 localhost:3000
    ↓
-4. App.js mount → useEffect → fetchAllData()
+4. HuaxiaTechTree.jsx mount → useGraphData hook → fetchAllData()
    ↓
-5. Promise.all 并行请求 5 个API:
+5. Promise.all 并行请求 4 个API:
    ├── /api/nodes
-   ├── /api/edges
    ├── /api/categories
    ├── /api/positions
    └── /api/adjacency
@@ -183,12 +186,12 @@ npm start
 
 | 功能 | 文件路径 |
 |------|----------|
-| 主组件 | src/App.js |
+| 主组件 | src/HuaxiaTechTree.jsx |
+| 入口文件 | src/App.js |
 | API封装 | src/services/api.js |
+| 数据获取hook | src/hooks/useGraphData.js |
 | 后端服务器 | server/index.js |
 | 节点数据 | server/data/nodes.json |
-| 边数据 | server/data/edges.json |
-| 位置数据 | server/data/positions.json |
 | 类别定义 | server/data/categories.json |
 
 ---
