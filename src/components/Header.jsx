@@ -15,38 +15,13 @@ export const Header = React.memo(function Header({ mode, setMode, tab, setTab, s
   };
 
   return (
-    <header
-      style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        padding: "10px 20px",
-        background: "rgba(255,252,245,.98)",
-        borderBottom: "2px solid rgba(200,160,69,.25)",
-        flexShrink: 0,
-        gap: 10,
-        boxShadow: "0 2px 12px rgba(139,105,20,.08)",
-      }}
-    >
-      <div style={{ display: "flex", alignItems: "baseline", gap: 12 }}>
-        <h1
-          style={{
-            fontFamily: '"ZCOOL XiaoWei",serif',
-            fontSize: 26,
-            letterSpacing: 5,
-            background: "linear-gradient(135deg,#8b6914,#c8a045,#b8860b)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-          }}
-        >
-          华夏科技树
-        </h1>
-        <span style={{ fontSize: 10, color: "#8b7355", letterSpacing: 3 }}>
-          CHINA TECHNOLOGY DAG
-        </span>
+    <header className="app-header">
+      <div className="app-header__brand">
+        <h1 className="app-header__title">华夏科技树</h1>
+        <span className="app-header__subtitle">CHINA TECHNOLOGY DAG</span>
       </div>
 
-      <div style={{ display: "flex", gap: 6 }}>
+      <div className="app-header__group">
         <Btn
           active={mode === "explore"}
           col="200,160,69"
@@ -70,7 +45,7 @@ export const Header = React.memo(function Header({ mode, setMode, tab, setTab, s
         </Btn>
       </div>
 
-      <div style={{ display: "flex", gap: 6 }}>
+      <div className="app-header__group">
         <Btn
           active={false}
           col="200,160,69"

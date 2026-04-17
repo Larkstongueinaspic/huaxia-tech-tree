@@ -76,7 +76,6 @@ export function SearchModal({ NODES, CAT, onSelect, isOpen, onClose }) {
   const [query, setQuery] = useState('');
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const inputRef = useRef(null);
-  const resultsRef = useRef(null);
 
   // 搜索结果
   const results = useMemo(() => {
@@ -137,24 +136,6 @@ export function SearchModal({ NODES, CAT, onSelect, isOpen, onClose }) {
     setSelectedIndex(index);
   };
 
-  // 监听全局键盘事件
-  useEffect(() => {
-    const handleGlobalKeyDown = (e) => {
-      // Cmd+K 或 Ctrl+K 打开搜索
-      if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
-        e.preventDefault();
-        if (!isOpen) {
-          // 这里需要从父组件传递打开函数
-          // 临时方案：通过事件
-          window.dispatchEvent(new CustomEvent('openSearch'));
-        }
-      }
-    };
-
-    window.addEventListener('keydown', handleGlobalKeyDown);
-    return () => window.removeEventListener('keydown', handleGlobalKeyDown);
-  }, [isOpen]);
-
   if (!isOpen) return null;
 
   return (
@@ -198,7 +179,7 @@ export function SearchModal({ NODES, CAT, onSelect, isOpen, onClose }) {
           </div>
 
           {/* 搜索结果列表 */}
-          <div className="search-modal-results" ref={resultsRef}>
+          <div className="search-modal-results">
             {results.length === 0 ? (
               <div className="search-modal-empty">
                 {query.trim() ? '🔍 未找到匹配的节点' : '📌 开始输入以搜索节点'}

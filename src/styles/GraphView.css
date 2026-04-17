@@ -17,11 +17,11 @@
 
 .graph-node:hover .node-circle-primary {
   filter: drop-shadow(0 0 8px rgba(139, 90, 43, 0.4));
-  animation: nodeScalePulse var(--duration-base) var(--easing-ease-in-out) forwards;
+  animation: nodeScale var(--duration-base) var(--easing-ease-in-out) forwards;
 }
 
 .graph-node.selected .node-circle-primary {
-  animation: nodeSelectBounce var(--duration-base) var(--easing-spring) forwards;
+  animation: nodeBounce var(--duration-base) var(--easing-spring) forwards;
   filter: drop-shadow(var(--shadow-accent));
 }
 
@@ -117,4 +117,24 @@
   .graph-view-svg {
     background-color: var(--color-bg);
   }
+}
+
+.graph-view__controls {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.graph-view__control-button {
+  width: 28px;
+  height: 28px;
+  font-size: 16px;
+  line-height: 1;
+}
+
+.graph-view__control-button--small {
+  font-size: 11px;
 }

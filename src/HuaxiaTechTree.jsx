@@ -62,6 +62,7 @@ export default function HuaxiaTechTree() {
     handlers,
     actions,
   } = usePanZoom();
+  const { panToNode } = actions;
 
   const {
     sel,
@@ -76,14 +77,14 @@ export default function HuaxiaTechTree() {
     onNode,
   } = useTraversal();
 
-  useAutoPlay(playing, steps.length, setSi, setPlaying, steps, actions.panToNode, POS, si);
+  useAutoPlay(playing, steps.length, setSi, setPlaying, steps, panToNode, POS, si);
 
   // sel 变化时自动平移到目标节点
   useEffect(() => {
     if (sel && POS[sel]) {
-      actions.panToNode(sel, POS);
+      panToNode(sel, POS);
     }
-  }, [sel, POS, actions.panToNode]);
+  }, [sel, POS, panToNode]);
 
   const EDGES = useMemo(() => deriveEdges(NODES, ADJ), [NODES, ADJ]);
   const step = steps[si] ?? null;
@@ -117,27 +118,7 @@ export default function HuaxiaTechTree() {
   if (error) return <ErrorScreen error={error} />;
 
   return (
-    <div
-      style={{
-        width: "100vw",
-        height: "100vh",
-        background: "#f5f0e8",
-        color: "#2c2416",
-        display: "flex",
-        flexDirection: "column",
-        overflow: "hidden",
-        fontFamily: '"Noto Sans SC",sans-serif',
-      }}
-    >
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=ZCOOL+XiaoWei&family=Noto+Serif+SC:wght@400;700&family=Noto+Sans+SC:wght@300;400&family=JetBrains+Mono:wght@400&display=swap');
-        *{box-sizing:border-box;margin:0;padding:0;user-select:none}
-        ::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:#e8e0d4}::-webkit-scrollbar-thumb{background:#c8a045;border-radius:3px}
-        button{cursor:pointer;border:none;font-family:inherit}
-        @keyframes pulse{0%,100%{opacity:.07}50%{opacity:.02}}
-        @keyframes fadeIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
-      `}</style>
-
+    <div className="app-shell">
       <Header
         mode={mode}
         setMode={setMode}
@@ -150,7 +131,7 @@ export default function HuaxiaTechTree() {
         onGuideClick={() => setShowGuide(true)}
       />
 
-      <div style={{ flex: 1, display: "flex", overflow: "hidden" }}>
+      <div className="app-main-layout">
         <Sidebar
           CAT={CAT}
           NODES={NODES}
@@ -166,14 +147,7 @@ export default function HuaxiaTechTree() {
           setIsOpen={setLeftOpen}
         />
 
-        <main
-          style={{
-            flex: 1,
-            overflow: "hidden",
-            position: "relative",
-            background: "#ebe5d8",
-          }}
-        >
+        <main className="app-main">
           {tab === "graph" ? (
             <GraphView
               NODES={NODES}
@@ -206,21 +180,8 @@ export default function HuaxiaTechTree() {
 
           {mode !== "explore" && steps.length === 0 && (
             <div
-              style={{
-                position: "absolute",
-                bottom: 16,
-                left: "50%",
-                transform: "translateX(-50%)",
-                background: "rgba(255,252,245,.95)",
-                border: `1px solid rgba(${modeColor(mode)},.4)`,
-                padding: "8px 18px",
-                borderRadius: 6,
-                fontSize: 12,
-                color: `rgb(${modeColor(mode)})`,
-                pointerEvents: "none",
-                letterSpacing: 1,
-                boxShadow: "0 2px 12px rgba(0,0,0,.08)",
-              }}
+              className="traversal-hint"
+              style={{ "--hint-color-rgb": modeColor(mode) }}
             >
               {mode === "bfs"
                 ? "⬛ 点击任意节点，开始广度优先搜索 BFS"

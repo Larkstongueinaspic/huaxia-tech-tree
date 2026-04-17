@@ -7,25 +7,8 @@ import React from "react";
 
 export const AdjListView = React.memo(function AdjListView({ NODES, ADJ, CAT, step, onNode }) {
   return (
-    <div
-      style={{
-        padding: "20px 24px",
-        overflow: "auto",
-        height: "100%",
-        fontFamily: '"JetBrains Mono",monospace',
-        background: "#faf8f5",
-      }}
-    >
-      <div
-        style={{
-          fontSize: 10.5,
-          color: "#5a4a38",
-          letterSpacing: 2,
-          marginBottom: 14,
-          borderBottom: "1px solid rgba(139,105,20,.12)",
-          paddingBottom: 10,
-        }}
-      >
+    <div className="adjlist-view">
+      <div className="adjlist-view__header">
         邻接表 · HashMap&lt;String, List&lt;String&gt;&gt; — 空间复杂度 O(V+E)
       </div>
 
@@ -38,39 +21,30 @@ export const AdjListView = React.memo(function AdjListView({ NODES, ADJ, CAT, st
           <div
             key={node.id}
             onClick={() => onNode(node.id)}
+            className="adjlist-view__row"
             style={{
-              display: "flex",
-              alignItems: "flex-start",
-              gap: 14,
-              padding: "6px 10px",
-              marginBottom: 3,
-              borderRadius: 5,
-              cursor: "pointer",
-              background: isCur
+              "--row-bg": isCur
                 ? "rgba(231,76,60,.08)"
                 : isVis
                 ? "rgba(200,160,69,.06)"
                 : "transparent",
-              borderLeft: `2.5px solid ${
-                isCur ? "#e74c3c" : isVis ? "rgba(139,105,20,.45)" : "transparent"
-              }`,
-              transition: "all .3s",
+              "--row-border": isCur ? "#e74c3c" : isVis ? "rgba(139,105,20,.45)" : "transparent",
+              "--row-accent": CAT[node.cat]?.color,
             }}
           >
-            <span style={{ color: CAT[node.cat]?.color, minWidth: 110, fontSize: 11 }}>
-              {node.id}
-            </span>
-            <span style={{ color: "rgba(139,105,20,.3)" }}>→</span>
-            <span style={{ fontSize: 11 }}>
-              <span style={{ color: "rgba(139,105,20,.25)" }}>[</span>
+            <span className="adjlist-view__id">{node.id}</span>
+            <span className="adjlist-view__arrow">→</span>
+            <span className="adjlist-view__neighbors">
+              <span className="adjlist-view__bracket">[</span>
               {nbrs.length === 0 ? (
-                <span style={{ color: "rgba(139,105,20,.2)" }}> ∅ </span>
+                <span className="adjlist-view__empty"> ∅ </span>
               ) : (
                 nbrs.map((n, i) => (
                   <span key={n}>
                     <span
+                      className="adjlist-view__neighbor"
                       style={{
-                        color: step?.fresh?.includes(n)
+                        "--neighbor-color": step?.fresh?.includes(n)
                           ? "#e74c3c"
                           : step?.visited?.has(n)
                           ? "#c8a045"
@@ -80,22 +54,14 @@ export const AdjListView = React.memo(function AdjListView({ NODES, ADJ, CAT, st
                       {n}
                     </span>
                     {i < nbrs.length - 1 && (
-                      <span style={{ color: "rgba(139,105,20,.25)" }}>, </span>
+                      <span className="adjlist-view__comma">, </span>
                     )}
                   </span>
                 ))
               )}
-              <span style={{ color: "rgba(139,105,20,.25)" }}> ]</span>
+              <span className="adjlist-view__bracket"> ]</span>
             </span>
-            <span
-              style={{
-                marginLeft: "auto",
-                color: "rgba(90,74,56,.5)",
-                fontSize: 10,
-              }}
-            >
-              {node.name}
-            </span>
+            <span className="adjlist-view__name">{node.name}</span>
           </div>
         );
       })}

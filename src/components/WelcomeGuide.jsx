@@ -64,25 +64,21 @@ export function WelcomeGuide({ isOpen = false, onClose }) {
       title: '欢迎来到华夏科技树',
       description: '这是一个展示中国古代科技发明及其传承关系的知识图谱。',
       tip: '这个庞大的网络展示了科技之间的依赖关系。',
-      highlights: ['graph-area'],
     },
     {
       title: '点击节点，探索科技',
       description: '每个圆形代表一项科技发明。点击任意节点查看详细信息。',
       tip: '选中后会在右侧面板显示详情。',
-      highlights: [],
     },
     {
       title: '使用搜索快速定位',
       description: '按 Cmd+K 或 Ctrl+K 打开搜索框，快速查找感兴趣的科技。',
       tip: '支持节点名称、英文名、描述的模糊搜索。',
-      highlights: ['search-btn'],
     },
     {
       title: '开始探索',
       description: '现在您已经了解了基本操作，开始探索这棵科技树吧！',
       tip: '左侧可按分类筛选，BFS/DFS 模式展示遍历过程。',
-      highlights: [],
     },
   ];
 

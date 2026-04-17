@@ -6,80 +6,32 @@ import React from "react";
 // ============================================================
 
 export const DetailPanel = React.memo(function DetailPanel({ selD, CAT, ADJ, RADJ, NMAP, onNode, isOpen, setIsOpen }) {
+  const panelClassName = `side-panel detail-panel${isOpen ? "" : " side-panel--collapsed"}`;
+
   return (
     <>
       <button
         onClick={() => setIsOpen(p => !p)}
+        className="side-panel-toggle side-panel-toggle--right"
         style={{
-          position: "absolute",
-          right: isOpen ? 228 : 0,
-          top: "50%",
-          transform: "translateY(-50%)",
-          width: 20,
-          height: 40,
-          background: isOpen ? "rgba(200,160,69,.15)" : "rgba(200,160,69,.3)",
-          border: "1px solid rgba(200,160,69,.3)",
-          borderRadius: "4px 0 0 4px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          cursor: "pointer",
-          zIndex: 10,
-          transition: "right 0.25s ease, background 0.2s ease",
-          padding: 0,
+          "--toggle-offset": isOpen ? "228px" : "0px",
+          "--toggle-bg": isOpen ? "rgba(200,160,69,.15)" : "rgba(200,160,69,.3)",
         }}
       >
         <span style={{ color: "#8b6914", fontSize: 10 }}>{isOpen ? "»" : "«"}</span>
       </button>
-      <aside
-        style={{
-          width: isOpen ? 228 : 0,
-          flexShrink: 0,
-          background: "rgba(255,252,248,.97)",
-          borderLeft: "1px solid rgba(200,160,69,.18)",
-          padding: isOpen ? 16 : "16px 0",
-          display: "flex",
-          flexDirection: "column",
-          gap: 11,
-          overflow: "hidden",
-          transition: `width 0.25s ease ${isOpen ? '0s' : '0.1s'}, padding 0.25s ease ${isOpen ? '0s' : '0.1s'}`,
-        }}
-      >
-        <div style={{
-          opacity: isOpen ? 1 : 0,
-          transition: `opacity 0.2s ease ${isOpen ? '0.15s' : '0s'}`,
-          pointerEvents: isOpen ? "auto" : "none",
-          display: "flex",
-          flexDirection: "column",
-          gap: 11,
-          flex: 1,
-        }}>
+      <aside className={panelClassName} style={{ "--panel-width": "228px" }}>
+        <div className="side-panel__content detail-panel__content">
       {selD ? (
-        <div style={{ animation: "fadeIn .3s ease" }}>
-          <div
-            style={{
-              borderBottom: "1px solid rgba(139,105,20,.18)",
-              paddingBottom: 12,
-              marginBottom: 12,
-            }}
-          >
-            <div
-              style={{
-                fontFamily: '"ZCOOL XiaoWei",serif',
-                fontSize: 24,
-                letterSpacing: 2,
-                color: CAT[selD.cat]?.color ?? "#c8a045",
-                marginBottom: 3,
-              }}
-            >
+        <div className="detail-panel__selected">
+          <div className="detail-panel__header">
+            <div className="detail-panel__title" style={{ "--detail-accent": CAT[selD.cat]?.color ?? "#c8a045" }}>
               {selD.name}
             </div>
-            <div style={{ fontSize: 10, color: "rgba(90,74,56,.5)", letterSpacing: 3 }}>
-              {selD.en}
-            </div>
+            <div className="detail-panel__subtitle">{selD.en}</div>
           </div>
 
-          <div style={{ display: "flex", gap: 5, flexWrap: "wrap", marginBottom: 11 }}>
+          <div className="detail-panel__tags">
             {[
               [selD.era, "rgba(139,105,20,.1)", "rgba(139,105,20,.25)", "#8b6914"],
               [
@@ -103,14 +55,12 @@ export const DetailPanel = React.memo(function DetailPanel({ selD, CAT, ADJ, RAD
             ].map(([txt, bg, border, col], i) => (
               <span
                 key={i}
+                className="detail-panel__tag"
                 style={{
-                  padding: "3px 8px",
-                  background: bg,
-                  border: `1px solid ${border}`,
-                  borderRadius: 3,
-                  fontSize: 10.5,
-                  color: col,
-                  fontFamily: i === 1 ? '"JetBrains Mono"' : "inherit",
+                  "--tag-bg": bg,
+                  "--tag-border": border,
+                  "--tag-color": col,
+                  "--tag-font": i === 1 ? '"JetBrains Mono"' : "inherit",
                 }}
               >
                 {txt}
@@ -118,60 +68,24 @@ export const DetailPanel = React.memo(function DetailPanel({ selD, CAT, ADJ, RAD
             ))}
           </div>
 
-          <div style={{ marginBottom: 10 }}>
-            <div style={{ fontSize: 9, color: "#5a4a38", letterSpacing: 2, marginBottom: 3 }}>
-              发明者
-            </div>
-            <div style={{ fontSize: 12, color: "#5a4a38" }}>{selD.inv}</div>
+          <div className="detail-panel__block">
+            <div className="detail-panel__label">发明者</div>
+            <div className="detail-panel__text">{selD.inv}</div>
           </div>
 
-          <div style={{ marginBottom: 11 }}>
-            <div style={{ fontSize: 9, color: "#5a4a38", letterSpacing: 2, marginBottom: 4 }}>
-              简介
-            </div>
-            <div style={{ fontSize: 10.5, color: "#6b5d4d", lineHeight: 1.85 }}>
-              {selD.desc}
-            </div>
+          <div className="detail-panel__block">
+            <div className="detail-panel__label">简介</div>
+            <div className="detail-panel__desc">{selD.desc}</div>
           </div>
 
-          <div
-            style={{
-              background: "rgba(200,160,69,.06)",
-              borderLeft: "2px solid rgba(139,105,20,.45)",
-              padding: "8px 10px",
-              borderRadius: "0 4px 4px 0",
-              marginBottom: 12,
-            }}
-          >
-            <div style={{ fontSize: 9, color: "#5a4a38", letterSpacing: 2, marginBottom: 3 }}>
-              历史意义
-            </div>
-            <div style={{ fontSize: 11, color: "#8b6914", lineHeight: 1.75 }}>
-              {selD.sig}
-            </div>
+          <div className="detail-panel__meaning">
+            <div className="detail-panel__label">历史意义</div>
+            <div className="detail-panel__meaning-text">{selD.sig}</div>
           </div>
 
           <div>
-            <div
-              style={{
-                fontSize: 9,
-                color: "#5a4a38",
-                letterSpacing: 2,
-                marginBottom: 6,
-              }}
-            >
-              图关系 Graph Relations
-            </div>
-            <div
-              style={{
-                fontFamily: '"JetBrains Mono"',
-                fontSize: 10,
-                color: "#5a4a38",
-                marginBottom: 7,
-                display: "flex",
-                gap: 14,
-              }}
-            >
+            <div className="detail-panel__label">图关系 Graph Relations</div>
+            <div className="detail-panel__stats">
               <span>
                 in-deg: <span style={{ color: "#4a90d9" }}>{RADJ[selD.id].length}</span>
               </span>
@@ -181,29 +95,20 @@ export const DetailPanel = React.memo(function DetailPanel({ selD, CAT, ADJ, RAD
             </div>
 
             {RADJ[selD.id].length > 0 && (
-              <div style={{ marginBottom: 7 }}>
-                <div
-                  style={{
-                    fontSize: 9,
-                    color: "rgba(74,144,217,.65)",
-                    marginBottom: 4,
-                  }}
-                >
+              <div className="detail-panel__block">
+                <div className="detail-panel__label" style={{ color: "rgba(74,144,217,.65)" }}>
                   前驱节点 ←
                 </div>
-                <div style={{ display: "flex", flexWrap: "wrap", gap: 4 }}>
+                <div className="detail-panel__pill-list">
                   {RADJ[selD.id].map(id => (
                     <span
                       key={id}
                       onClick={() => onNode(id)}
+                      className="detail-panel__pill"
                       style={{
-                        padding: "2px 6px",
-                        background: "rgba(74,144,217,.08)",
-                        border: "1px solid rgba(74,144,217,.3)",
-                        borderRadius: 3,
-                        fontSize: 10,
-                        color: "#4a90d9",
-                        cursor: "pointer",
+                        "--pill-bg": "rgba(74,144,217,.08)",
+                        "--pill-border": "rgba(74,144,217,.3)",
+                        "--pill-color": "#4a90d9",
                       }}
                     >
                       {NMAP[id]?.name}
@@ -215,28 +120,19 @@ export const DetailPanel = React.memo(function DetailPanel({ selD, CAT, ADJ, RAD
 
             {ADJ[selD.id].length > 0 && (
               <div>
-                <div
-                  style={{
-                    fontSize: 9,
-                    color: "rgba(139,105,20,.6)",
-                    marginBottom: 4,
-                  }}
-                >
+                <div className="detail-panel__label" style={{ color: "rgba(139,105,20,.6)" }}>
                   后继节点 →
                 </div>
-                <div style={{ display: "flex", flexWrap: "wrap", gap: 4 }}>
+                <div className="detail-panel__pill-list">
                   {ADJ[selD.id].map(id => (
                     <span
                       key={id}
                       onClick={() => onNode(id)}
+                      className="detail-panel__pill"
                       style={{
-                        padding: "2px 6px",
-                        background: "rgba(200,160,69,.08)",
-                        border: "1px solid rgba(200,160,69,.3)",
-                        borderRadius: 3,
-                        fontSize: 10,
-                        color: "#c8a045",
-                        cursor: "pointer",
+                        "--pill-bg": "rgba(200,160,69,.08)",
+                        "--pill-border": "rgba(200,160,69,.3)",
+                        "--pill-color": "#c8a045",
                       }}
                     >
                       {NMAP[id]?.name}
@@ -249,15 +145,7 @@ export const DetailPanel = React.memo(function DetailPanel({ selD, CAT, ADJ, RAD
         </div>
       ) : (
         <div
-          style={{
-            flex: 1,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: 14,
-            color: "#8b7355",
-          }}
+          className="detail-panel__empty"
         >
           <svg width="56" height="56" viewBox="0 0 56 56">
             <polygon
@@ -275,7 +163,7 @@ export const DetailPanel = React.memo(function DetailPanel({ selD, CAT, ADJ, RAD
               strokeWidth="1"
             />
           </svg>
-          <div style={{ fontSize: 12, textAlign: "center", lineHeight: 2, letterSpacing: 1 }}>
+          <div className="detail-panel__empty-text">
             点击图中节点
             <br />
             查看发明详情

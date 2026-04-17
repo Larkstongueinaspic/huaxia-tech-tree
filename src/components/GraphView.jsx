@@ -34,6 +34,7 @@ export const GraphView = React.memo(function GraphView({
     <>
       <svg
         ref={viewportRef}
+        className="graph-view-svg"
         viewBox={VIEW_BOX}
         preserveAspectRatio="xMidYMin meet"
         style={{
@@ -329,46 +330,17 @@ export const GraphView = React.memo(function GraphView({
         })()}
       </svg>
 
-      <div
-        style={{
-          position: "absolute",
-          bottom: 16,
-          right: 16,
-          display: "flex",
-          flexDirection: "column",
-          gap: 4,
-        }}
-      >
+      <div className="graph-view__controls">
         <button
           onClick={actions.zoomIn}
-          style={{
-            width: 28,
-            height: 28,
-            background: "rgba(255,252,245,.92)",
-            color: "#8b6914",
-            border: "1px solid rgba(200,160,69,.3)",
-            borderRadius: 4,
-            fontSize: 16,
-            lineHeight: 1,
-            boxShadow: "0 2px 6px rgba(0,0,0,.06)",
-          }}
+          className="graph-view__control-button"
         >
           +
         </button>
 
         <button
           onClick={actions.zoomOut}
-          style={{
-            width: 28,
-            height: 28,
-            background: "rgba(255,252,245,.92)",
-            color: "#8b6914",
-            border: "1px solid rgba(200,160,69,.3)",
-            borderRadius: 4,
-            fontSize: 16,
-            lineHeight: 1,
-            boxShadow: "0 2px 6px rgba(0,0,0,.06)",
-          }}
+          className="graph-view__control-button"
         >
           −
         </button>
@@ -376,32 +348,14 @@ export const GraphView = React.memo(function GraphView({
         <button
           onClick={() => sel && actions.panToNode(sel, POS)}
           title="回到当前节点"
-          style={{
-            width: 28,
-            height: 28,
-            background: "rgba(255,252,245,.92)",
-            color: "#8b6914",
-            border: "1px solid rgba(200,160,69,.3)",
-            borderRadius: 4,
-            fontSize: 11,
-            boxShadow: "0 2px 6px rgba(0,0,0,.06)",
-          }}
+          className="graph-view__control-button graph-view__control-button--small"
         >
           ◎
         </button>
 
         <button
           onClick={actions.resetView}
-          style={{
-            width: 28,
-            height: 28,
-            background: "rgba(255,252,245,.92)",
-            color: "#8b6914",
-            border: "1px solid rgba(200,160,69,.3)",
-            borderRadius: 4,
-            fontSize: 11,
-            boxShadow: "0 2px 6px rgba(0,0,0,.06)",
-          }}
+          className="graph-view__control-button graph-view__control-button--small"
         >
           ⌂
         </button>

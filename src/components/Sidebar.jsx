@@ -21,69 +21,27 @@ export const Sidebar = React.memo(function Sidebar({
   isOpen,
   setIsOpen,
 }) {
+  const panelClassName = `side-panel sidebar${isOpen ? "" : " side-panel--collapsed"}`;
+
   return (
     <>
       <button
         onClick={() => setIsOpen(p => !p)}
+        className="side-panel-toggle side-panel-toggle--left"
         style={{
-          position: "absolute",
-          left: isOpen ? 170 : 0,
-          top: "50%",
-          transform: "translateY(-50%)",
-          width: 20,
-          height: 40,
-          background: isOpen ? "rgba(200,160,69,.15)" : "rgba(200,160,69,.3)",
-          border: "1px solid rgba(200,160,69,.3)",
-          borderRadius: isOpen ? "0 4px 4px 0" : "0 4px 4px 0",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          cursor: "pointer",
-          zIndex: 10,
-          transition: "left 0.25s ease, background 0.2s ease",
-          padding: 0,
+          "--toggle-offset": isOpen ? "170px" : "0px",
+          "--toggle-bg": isOpen ? "rgba(200,160,69,.15)" : "rgba(200,160,69,.3)",
         }}
       >
         <span style={{ color: "#8b6914", fontSize: 10 }}>{isOpen ? "«" : "»"}</span>
       </button>
-      <aside
-        style={{
-          width: isOpen ? 172 : 0,
-          flexShrink: 0,
-          display: "flex",
-          flexDirection: "column",
-          background: "rgba(255,252,248,.95)",
-          borderRight: "1px solid rgba(200,160,69,.15)",
-          padding: isOpen ? "14px 12px" : "14px 0",
-          gap: 9,
-          overflow: "hidden",
-          transition: `width 0.25s ease ${isOpen ? '0s' : '0.1s'}, padding 0.25s ease ${isOpen ? '0s' : '0.1s'}`,
-        }}
-      >
-        <div style={{
-          opacity: isOpen ? 1 : 0,
-          transition: `opacity 0.2s ease ${isOpen ? '0.15s' : '0s'}`,
-          pointerEvents: isOpen ? "auto" : "none",
-          display: "flex",
-          flexDirection: "column",
-          gap: 9,
-        }}>
+      <aside className={panelClassName} style={{ "--panel-width": "172px" }}>
+        <div className="side-panel__content">
       <Sec title="节点类别">
         {Object.entries(CAT).map(([k, { color, label }]) => (
-          <div
-            key={k}
-            style={{ display: "flex", alignItems: "center", gap: 7, marginBottom: 4 }}
-          >
-            <div
-              style={{
-                width: 8,
-                height: 8,
-                borderRadius: "50%",
-                background: color,
-                boxShadow: `0 0 4px ${color}50`,
-              }}
-            />
-            <span style={{ fontSize: 11, color: "#5a4a38" }}>{label}</span>
+          <div key={k} className="sidebar__legend-row">
+            <div className="sidebar__legend-dot" style={{ "--dot-color": color }} />
+            <span className="sidebar__legend-text">{label}</span>
           </div>
         ))}
       </Sec>
@@ -95,20 +53,9 @@ export const Sidebar = React.memo(function Sidebar({
           ["#4a90d9", "队列 BFS"],
           ["#2ecc71", "栈 DFS"],
         ].map(([c, l]) => (
-          <div
-            key={l}
-            style={{ display: "flex", alignItems: "center", gap: 7, marginBottom: 4 }}
-          >
-            <div
-              style={{
-                width: 8,
-                height: 8,
-                borderRadius: "50%",
-                background: c,
-                boxShadow: `0 0 3px ${c}40`,
-              }}
-            />
-            <span style={{ fontSize: 10, color: "#5a4a38" }}>{l}</span>
+          <div key={l} className="sidebar__legend-row">
+            <div className="sidebar__legend-dot" style={{ "--dot-color": c }} />
+            <span className="sidebar__legend-text">{l}</span>
           </div>
         ))}
       </Sec>
@@ -132,21 +79,14 @@ export const Sidebar = React.memo(function Sidebar({
       {mode !== "explore" && (
         <Sec title="步骤控制">
           {steps.length === 0 ? (
-            <div
-              style={{
-                fontSize: 10,
-                color: "#8b7355",
-                lineHeight: 1.8,
-                fontStyle: "italic",
-              }}
-            >
+            <div className="sidebar__control-empty">
               点击节点
               <br />
               开始{mode === "bfs" ? "广度" : "深度"}优先遍历
             </div>
           ) : (
             <>
-              <div style={{ display: "flex", gap: 4, marginBottom: 6 }}>
+              <div className="sidebar__control-row">
                 {[
                   ["◀", () => setSi(Math.max(0, si - 1))],
                   [playing ? "⏸" : "▶", () => setPlaying(p => !p)],
@@ -155,45 +95,22 @@ export const Sidebar = React.memo(function Sidebar({
                   <button
                     key={i}
                     onClick={fn}
-                    style={{
-                      flex: 1,
-                      padding: "5px 0",
-                      fontSize: 12,
-                      background: "rgba(200,160,69,.12)",
-                      color: "#8b6914",
-                      border: "1px solid rgba(200,160,69,.3)",
-                      borderRadius: 4,
-                    }}
+                    className="sidebar__control-button"
                   >
                     {icon}
                   </button>
                 ))}
               </div>
-              <div
-                style={{
-                  fontSize: 10,
-                  color: "#5a4a38",
-                  textAlign: "center",
-                  marginBottom: 6,
-                }}
-              >
+              <div className="sidebar__control-step">
                 步骤 {si + 1} / {steps.length}
               </div>
               <button
                 onClick={() => {
                   setSteps([]);
-                  setSi(0);
-                  setPlaying(false);
+                    setSi(0);
+                    setPlaying(false);
                 }}
-                style={{
-                  width: "100%",
-                  padding: "4px",
-                  fontSize: 10,
-                  background: "transparent",
-                  color: "#8b7355",
-                  border: "1px solid rgba(200,160,69,.15)",
-                  borderRadius: 4,
-                }}
+                className="sidebar__reset"
               >
                 重置
               </button>

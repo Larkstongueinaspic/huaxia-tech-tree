@@ -5,7 +5,7 @@
 
 export function Mono({ children, color = "#6b5d4d" }) {
   return (
-    <div style={{ fontFamily: '"JetBrains Mono"', fontSize: 10, color, lineHeight: 2, whiteSpace: "pre" }}>
+    <div className="ui-mono" style={{ "--mono-color": color }}>
       {children}
     </div>
   );
