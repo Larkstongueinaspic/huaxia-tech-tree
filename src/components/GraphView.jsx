@@ -6,6 +6,14 @@
 import React from "react";
 import { NODE_RADIUS, VIEW_BOX } from "../utils/constants";
 import { nState, eState, edgePath } from "../utils/graphUtils";
+import {
+  computeEraTimelinePositions,
+  getActiveEraIndex,
+  mergeEraBackgrounds,
+  TIMELINE_LAYOUT,
+} from "../utils/timelineUtils";
+import { ERA_BACKGROUND_SETTINGS } from "../config/eraBackgrounds";
+import { EraBackgroundLayer } from "./EraBackgroundLayer";
 import { NodeTooltip } from "./NodeTooltip";
 import "../styles/GraphView.css";
 
@@ -30,8 +38,41 @@ export const GraphView = React.memo(function GraphView({
 }) {
   const [hoveredNode, setHoveredNode] = React.useState(null);
   const [tooltipPos, setTooltipPos] = React.useState({ x: 0, y: 0 });
+  const eraPositions = React.useMemo(
+    () => computeEraTimelinePositions(timelineConfig),
+    [timelineConfig]
+  );
+  const eraBackgrounds = React.useMemo(
+    () => mergeEraBackgrounds(timelineConfig),
+    [timelineConfig]
+  );
+  const activeEraIndex = React.useMemo(
+    () => getActiveEraIndex(
+      eraPositions,
+      timelinePanX,
+      scale,
+      ERA_BACKGROUND_SETTINGS.switchTriggerX
+    ),
+    [eraPositions, timelinePanX, scale]
+  );
+  const activeEra = eraBackgrounds[activeEraIndex] || eraBackgrounds[0] || null;
+  const preloadEras = React.useMemo(
+    () => [
+      eraBackgrounds[activeEraIndex - 1],
+      eraBackgrounds[activeEraIndex],
+      eraBackgrounds[activeEraIndex + 1],
+    ].filter(Boolean),
+    [eraBackgrounds, activeEraIndex]
+  );
+
   return (
     <>
+      <EraBackgroundLayer
+        era={activeEra}
+        settings={ERA_BACKGROUND_SETTINGS}
+        preloadEras={preloadEras}
+      />
+
       <svg
         ref={viewportRef}
         className="graph-view-svg"
@@ -231,40 +272,21 @@ export const GraphView = React.memo(function GraphView({
           const TL_YEAR_Y = TL_base + 40;      // 起始年份文字（原来 60）
 
           
-          // 计算每个时期的带scale的年份跨度，用于确定时间轴上的位置
-          let cumulativeYears = 0;
-          const eraPositions = timelineConfig.map(({ start, end, scale: eraScale }) => {
-            const eraSpan = end - start;
-            const weightedSpan = eraSpan * eraScale;
-            const result = { startX: cumulativeYears, endX: cumulativeYears + weightedSpan };
-            cumulativeYears += weightedSpan;
-            return result;
-          });
-          const totalWeightedYears = cumulativeYears;
-          const baseOffset = 60;
-          const TIMELINE_SCALE = 10; // 时间轴延长倍数
-          const timelineWidth = (1140 - 60) * TIMELINE_SCALE;
-
           return (
             <g transform={`translate(${timelinePanX},0)`}>
               {/* 1) 只缩放”图形”，不缩放文字 */}
               <g transform={`scale(${scale},1)`}>
                 <line
-                  x1={baseOffset}
+                  x1={TIMELINE_LAYOUT.baseOffset}
                   y1={TL_Y}
-                  x2={1140 * TIMELINE_SCALE}
+                  x2={TIMELINE_LAYOUT.rightEdge * TIMELINE_LAYOUT.widthMultiplier}
                   y2={TL_Y}
                   stroke={'rgba(139,105,20,.1)'}
                   strokeWidth={14}
                   strokeLinecap={'round'}
                 />
 
-                {timelineConfig.map(({ name, start, end, color, lightColor }, idx) => {
-                  const pos = eraPositions[idx];
-                  const x1 = Math.round(baseOffset + (pos.startX / totalWeightedYears) * timelineWidth);
-                  const x2 = Math.round(baseOffset + (pos.endX / totalWeightedYears) * timelineWidth);
-                  const width = x2 - x1;
-
+                {eraPositions.map(({ name, color, lightColor, x1, x2, width }) => {
                   return (
                     <g key={`shape-${name}`}>
                       <rect
@@ -292,9 +314,7 @@ export const GraphView = React.memo(function GraphView({
               </g>
 
               {/* 2) 单独渲染文字：位置跟着 scale 变化，但文字本身不被拉伸 */}
-              {timelineConfig.map(({ name, start, color }, idx) => {
-                const pos = eraPositions[idx];
-                const x1 = Math.round(baseOffset + (pos.startX / totalWeightedYears) * timelineWidth);
+              {eraPositions.map(({ name, start, color, x1 }) => {
                 const scaledX1 = x1 * scale;
 
                 return (

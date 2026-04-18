@@ -1,0 +1,148 @@
+/* ============================================================
+ * EraBackgroundLayer.css
+ * 年代背景图层与动画效果
+ * ============================================================ */
+
+.era-background-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background: var(--color-bg);
+  isolation: isolate;
+}
+
+.era-background-layer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  background: var(--era-bg-overlay);
+}
+
+.era-background-layer__pane {
+  position: absolute;
+  inset: -2%;
+  z-index: 1;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0;
+  transform: scale(1.02);
+  will-change: opacity, transform, clip-path;
+}
+
+.era-background-layer__pane--current {
+  z-index: 2;
+  opacity: var(--era-bg-opacity);
+}
+
+.era-background-layer__pane--previous {
+  opacity: var(--era-bg-opacity);
+}
+
+.era-background-layer[data-transition="fade"] .era-background-layer__pane--current {
+  animation: eraFadeIn var(--era-bg-duration) var(--era-bg-easing) both;
+}
+
+.era-background-layer[data-transition="fade"] .era-background-layer__pane--previous {
+  animation: eraFadeOut var(--era-bg-duration) var(--era-bg-easing) both;
+}
+
+.era-background-layer[data-transition="smooth"] .era-background-layer__pane--current {
+  animation: eraSmoothIn var(--era-bg-duration) var(--era-bg-easing) both;
+}
+
+.era-background-layer[data-transition="smooth"] .era-background-layer__pane--previous {
+  animation: eraSmoothOut var(--era-bg-duration) var(--era-bg-easing) both;
+}
+
+.era-background-layer[data-transition="wipe"] .era-background-layer__pane--current {
+  animation: eraWipeIn var(--era-bg-duration) var(--era-bg-easing) both;
+}
+
+.era-background-layer[data-transition="wipe"] .era-background-layer__pane--previous {
+  animation: eraFadeOut var(--era-bg-duration) var(--era-bg-easing) both;
+}
+
+.era-background-layer[data-transition="cover"] .era-background-layer__pane--current {
+  animation: eraCoverIn var(--era-bg-duration) var(--era-bg-easing) both;
+}
+
+.era-background-layer[data-transition="cover"] .era-background-layer__pane--previous {
+  animation: eraCoverOut var(--era-bg-duration) var(--era-bg-easing) both;
+}
+
+@keyframes eraFadeIn {
+  from { opacity: 0; }
+  to { opacity: var(--era-bg-opacity); }
+}
+
+@keyframes eraFadeOut {
+  from { opacity: var(--era-bg-opacity); }
+  to { opacity: 0; }
+}
+
+@keyframes eraSmoothIn {
+  from {
+    opacity: 0;
+    transform: scale(1.08);
+    filter: blur(4px) saturate(0.9);
+  }
+  to {
+    opacity: var(--era-bg-opacity);
+    transform: scale(1.02);
+    filter: blur(0) saturate(1);
+  }
+}
+
+@keyframes eraSmoothOut {
+  from {
+    opacity: var(--era-bg-opacity);
+    transform: scale(1.02);
+  }
+  to {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
+
+@keyframes eraWipeIn {
+  from {
+    opacity: var(--era-bg-opacity);
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    opacity: var(--era-bg-opacity);
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes eraCoverIn {
+  from {
+    opacity: var(--era-bg-opacity);
+    transform: translateX(8%) scale(1.02);
+  }
+  to {
+    opacity: var(--era-bg-opacity);
+    transform: translateX(0) scale(1.02);
+  }
+}
+
+@keyframes eraCoverOut {
+  from {
+    opacity: var(--era-bg-opacity);
+    transform: translateX(0) scale(1.02);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-4%) scale(1.02);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .era-background-layer__pane {
+    animation: none !important;
+    transition: none !important;
+  }
+}
