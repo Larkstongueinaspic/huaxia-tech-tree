@@ -115,11 +115,11 @@
 }
 
 /* 深色模式支持（预留） */
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   .graph-view-svg {
     background-color: var(--color-bg);
   }
-}
+} */
 
 .graph-view__controls {
   position: absolute;
