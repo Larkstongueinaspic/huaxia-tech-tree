@@ -1,0 +1,23 @@
+{
+  "radii": {
+    "sm": "4px",
+    "md": "8px",
+    "lg": "12px",
+    "xl": "16px",
+    "full": "9999px",
+    "button": "8px",
+    "control": "8px",
+    "panel": "14px",
+    "sidebar": "14px",
+    "panelToggle": "8px",
+    "modal": "14px",
+    "sheet": "14px",
+    "tooltip": "8px",
+    "tag": "6px",
+    "pill": "6px",
+    "input": "8px",
+    "scrollThumb": "6px",
+    "graphViewport": "14px",
+    "nodeCard": "10px"
+  }
+}

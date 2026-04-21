@@ -1,3 +1,5 @@
+import { DEFAULT_UI_CONFIG, normalizeUiConfig } from "../config/uiConfig";
+
 const API_BASE = 'http://localhost:5001/api';
 
 export async function fetchNodes() {
@@ -18,6 +20,12 @@ export async function fetchPositions() {
 export async function fetchAdjacency() {
   const res = await fetch(`${API_BASE}/adjacency`);
   return res.json();
+}
+
+export async function fetchUiConfig() {
+  const res = await fetch(`${API_BASE}/ui-config`);
+  if (!res.ok) return DEFAULT_UI_CONFIG;
+  return normalizeUiConfig(await res.json());
 }
 
 export async function runBFS(start) {
@@ -41,17 +49,19 @@ export async function runDFS(start) {
 }
 
 export async function fetchAllData() {
-  const [nodes, categories, positions, adjacency] = await Promise.all([
+  const [nodes, categories, positions, adjacency, uiConfig] = await Promise.all([
     fetchNodes(),
     fetchCategories(),
     fetchPositions(),
     fetchAdjacency(),
+    fetchUiConfig().catch(() => DEFAULT_UI_CONFIG),
   ]);
   return {
     nodes,
     categories,
     positions: positions.positions,
     timelineConfig: positions.eraRanges,
+    uiConfig: normalizeUiConfig(uiConfig),
     ...adjacency,
   };
 }

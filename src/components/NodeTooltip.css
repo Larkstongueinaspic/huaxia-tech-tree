@@ -8,24 +8,12 @@
   z-index: var(--z-tooltip);
   background: var(--color-bg-paper);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
+  border-radius: var(--component-radius-tooltip);
   padding: var(--spacing-3);
   box-shadow: var(--shadow-lg);
   max-width: 280px;
   animation: fadeIn var(--duration-fast) var(--easing-ease-out);
   pointer-events: none;
-}
-
-.node-tooltip-arrow {
-  position: absolute;
-  top: -8px;
-  left: 12px;
-  width: 0;
-  height: 0;
-  border-left: 8px solid transparent;
-  border-right: 8px solid transparent;
-  border-bottom: 8px solid var(--color-bg-paper);
-  z-index: 1;
 }
 
 .node-tooltip-content {
@@ -67,7 +55,7 @@
   display: inline-block;
   padding: var(--spacing-1) var(--spacing-2);
   border: 1px solid;
-  border-radius: var(--radius-sm);
+  border-radius: var(--component-radius-tag);
   font-family: var(--font-ui);
   font-weight: var(--font-weight-medium);
   font-size: var(--font-size-xs);

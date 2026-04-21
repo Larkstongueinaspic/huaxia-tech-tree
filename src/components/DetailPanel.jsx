@@ -11,15 +11,16 @@ export const DetailPanel = React.memo(function DetailPanel({ selD, CAT, ADJ, RAD
   return (
     <>
       <button
+        type="button"
         onClick={() => setIsOpen(p => !p)}
         className="side-panel-toggle side-panel-toggle--right"
+        aria-label={isOpen ? "收起右侧边栏" : "展开右侧边栏"}
+        aria-expanded={isOpen}
         style={{
           "--toggle-offset": isOpen ? "228px" : "0px",
           "--toggle-bg": isOpen ? "rgba(200,160,69,.15)" : "rgba(200,160,69,.3)",
         }}
-      >
-        <span style={{ color: "#8b6914", fontSize: 10 }}>{isOpen ? "»" : "«"}</span>
-      </button>
+      />
       <aside className={panelClassName} style={{ "--panel-width": "228px" }}>
         <div className="side-panel__content detail-panel__content">
       {selD ? (

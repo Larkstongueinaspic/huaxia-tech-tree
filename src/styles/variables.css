@@ -84,11 +84,25 @@
   
   /* ========== 圆角系统 ========== */
   
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-  --radius-xl: 16px;
-  --radius-full: 9999px;
+  --radius-sm: 4px;                /* 小圆角：标签、紧凑信息块 */
+  --radius-md: 8px;                /* 中圆角：普通按钮、输入框 */
+  --radius-lg: 12px;               /* 大圆角：面板、弹窗 */
+  --radius-xl: 16px;               /* 超大圆角：强调型容器 */
+  --radius-full: 9999px;           /* 胶囊/圆形：将正方形按钮变成圆 */
+  --component-radius-button: var(--radius-md);       /* 通用按钮圆角 */
+  --component-radius-control: var(--radius-md);      /* 工具控件圆角 */
+  --component-radius-panel: var(--radius-lg);        /* 普通面板圆角 */
+  --component-radius-sidebar: var(--radius-lg);      /* 左右边栏圆角 */
+  --component-radius-panel-toggle: var(--radius-full); /* 边栏开关按钮圆角，默认圆形 */
+  --component-radius-modal: var(--radius-lg);        /* 模态框圆角 */
+  --component-radius-sheet: var(--radius-lg);        /* 抽屉/搜索面板圆角 */
+  --component-radius-tooltip: var(--radius-md);      /* 悬浮提示圆角 */
+  --component-radius-tag: 6px;                       /* 标签圆角 */
+  --component-radius-pill: 6px;                      /* 小胶囊元素圆角 */
+  --component-radius-input: var(--radius-md);        /* 输入框圆角 */
+  --component-radius-scroll-thumb: 6px;              /* 滚动条滑块圆角 */
+  --component-radius-graph-viewport: var(--radius-lg); /* 科技树视口圆角 */
+  --component-radius-node-card: 10px;                /* 节点卡片圆角 */
   
   /* ========== 动画系统 ========== */
   

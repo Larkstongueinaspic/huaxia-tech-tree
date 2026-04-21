@@ -9,6 +9,7 @@ import { useGraphData } from "./hooks/useGraphData";
 import { usePanZoom } from "./hooks/usePanZoom";
 import { HuaxiaScrollExperience } from "./components/scroll/HuaxiaScrollExperience";
 import { LoadingScreen, ErrorScreen } from "./components/StateScreen";
+import { normalizeUiConfig } from "./config/uiConfig";
 import { deriveEdges } from "./utils/graphUtils";
 
 function buildFallbackMaps(nodes) {
@@ -25,8 +26,8 @@ function buildFallbackMaps(nodes) {
   return { adj, radj, nmap };
 }
 
-export default function HuaxiaTechTree() {
-  const { NODES, POS, CAT, ADJ, RADJ, NMAP, timelineConfig, loading, error } = useGraphData();
+export default function HuaxiaTechTree({ uiConfig: uiConfigOverride } = {}) {
+  const { NODES, POS, CAT, ADJ, RADJ, NMAP, timelineConfig, uiConfig, loading, error } = useGraphData();
   const {
     pan,
     scale,
@@ -56,6 +57,10 @@ export default function HuaxiaTechTree() {
     return buildFallbackMaps(NODES);
   }, [ADJ, RADJ, NMAP, NODES]);
   const EDGES = useMemo(() => deriveEdges(NODES, graphMaps.adj), [NODES, graphMaps.adj]);
+  const resolvedUiConfig = useMemo(
+    () => normalizeUiConfig(uiConfigOverride || uiConfig),
+    [uiConfigOverride, uiConfig]
+  );
 
   useEffect(() => {
     if (NODES.length === 0 || Object.keys(POS).length === 0) return;
@@ -87,6 +92,7 @@ export default function HuaxiaTechTree() {
       RADJ={graphMaps.radj}
       NMAP={graphMaps.nmap}
       timelineConfig={timelineConfig}
+      uiConfig={resolvedUiConfig}
       pan={pan}
       scale={scale}
       viewportRef={viewportRef}

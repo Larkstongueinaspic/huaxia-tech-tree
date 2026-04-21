@@ -148,7 +148,7 @@
   border: 1px solid rgba(74, 53, 28, 0.34);
   background: rgba(245, 230, 200, 0.62);
   color: var(--ink);
-  border-radius: 2px;
+  border-radius: var(--component-radius-button);
   padding: 8px 14px;
   transition: background 300ms ease-in-out, border-color 300ms ease-in-out, color 300ms ease-in-out;
 }
@@ -174,6 +174,7 @@
   scroll-behavior: smooth;
   border-top: 1px solid rgba(74, 53, 28, 0.3);
   border-bottom: 1px solid rgba(74, 53, 28, 0.3);
+  border-radius: var(--component-radius-panel);
   background:
     linear-gradient(90deg, rgba(92, 62, 26, 0.16), transparent 26px, transparent calc(100% - 26px), rgba(92, 62, 26, 0.18)),
     linear-gradient(180deg, rgba(255, 251, 232, 0.4), rgba(220, 200, 160, 0.38)),
@@ -249,6 +250,7 @@
   overflow: hidden;
   padding: clamp(14px, 1.4vw, 22px) clamp(12px, 1.2vw, 18px);
   border-right: 1px solid rgba(74, 53, 28, 0.22);
+  border-radius: var(--component-radius-sidebar);
   background:
     linear-gradient(180deg, rgba(255, 248, 226, 0.54), rgba(234, 215, 176, 0.22)),
     rgba(245, 230, 200, 0.2);
@@ -313,6 +315,7 @@
 
 .codexStats div {
   border: 1px solid rgba(74, 53, 28, 0.18);
+  border-radius: var(--component-radius-panel);
   background: rgba(245, 230, 200, 0.26);
   padding: 8px;
 }
@@ -374,7 +377,7 @@
     inset 0 0 0 8px rgba(245, 230, 200, 0.16),
     0 18px 36px rgba(73, 48, 18, 0.16);
   overflow: hidden;
-  clip-path: polygon(0 1%, 99.5% 0, 100% 98.8%, 0.5% 100%);
+  border-radius: var(--component-radius-graph-viewport);
 }
 
 .treeViewportShell::before {
@@ -460,54 +463,101 @@
 }
 
 .panelToggle {
-  position: fixed;
-  z-index: 9;
-  width: 22px;
-  height: 44px;
-  display: grid;
-  place-items: center;
-  padding: 0;
-  border: 1px solid rgba(74, 53, 28, 0.28);
-  background: rgba(245, 230, 200, 0.82);
-  color: var(--cinnabar);
-  font-family: var(--font-title);
-  font-size: 22px;
-  line-height: 1;
-  box-shadow: 0 8px 18px rgba(73, 48, 18, 0.12);
-  backdrop-filter: blur(6px);
-  transition: left var(--panel-duration) var(--panel-ease),
-    right var(--panel-duration) var(--panel-ease),
-    background 300ms ease-in-out,
-    border-color 300ms ease-in-out,
-    color 300ms ease-in-out;
+  /* 卷轴体验左右边栏开关：这是当前主界面实际使用的圆形按钮。 */
+  position: fixed; /* 固定在视口上，滚动画卷时按钮仍停留在侧栏边缘。 */
+  z-index: 9; /* 高于画卷内容，低于搜索层。 */
+  width: 30px; /* 按钮直径；想继续缩小/放大就改这里。 */
+  height: 30px; /* 与 width 一致时保持正圆。 */
+  display: grid; /* 让 CSS chevron 可以精确居中。 */
+  place-items: center; /* 水平/垂直居中箭头。 */
+  padding: 0; /* 图标按钮不需要内边距。 */
+  border: 1px solid rgba(74, 53, 28, 0.28); /* 外轮廓，负责纸面上的可见边界。 */
+  border-radius: var(--component-radius-panel-toggle); /* 默认正圆，也可由全局配置调整。 */
+  background:
+    radial-gradient(circle at 35% 28%, rgba(255, 249, 230, 0.98), rgba(232, 211, 169, 0.88) 58%, rgba(185, 135, 67, 0.72)),
+    rgba(245, 230, 200, 0.86); /* 径向渐变负责高光，纯色层负责底色。 */
+  color: var(--cinnabar); /* 预留给继承色；箭头实际颜色在 ::before 中设置。 */
+  line-height: 1; /* 防止按钮高度被字体行高撑开。 */
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.78), /* 内高光，增强按钮凸起感。 */
+    0 7px 16px rgba(73, 48, 18, 0.16), /* 外阴影，越大越漂浮。 */
+    0 0 0 3px rgba(245, 230, 200, 0.42); /* 外圈，让按钮和背景纸纹分离。 */
+  backdrop-filter: blur(6px); /* 按钮下方纸纹虚化，提升层次。 */
+  transition: left var(--panel-duration) var(--panel-ease), /* 左侧按钮跟随边栏开合。 */
+    right var(--panel-duration) var(--panel-ease), /* 右侧按钮跟随边栏开合。 */
+    transform 240ms ease-in-out, /* hover/active 缩放动画。 */
+    background 300ms ease-in-out, /* hover 背景渐变过渡。 */
+    border-color 300ms ease-in-out, /* hover 边框颜色过渡。 */
+    color 300ms ease-in-out, /* 预留文字/图标颜色过渡。 */
+    box-shadow 300ms ease-in-out; /* hover 阴影过渡。 */
+}
+
+.panelToggle::before {
+  content: ""; /* 经典 UI chevron：用边框绘制，不依赖文本箭头符号。 */
+  width: 8px; /* 箭头宽度；按钮缩小时通常保持 7-8px。 */
+  height: 8px; /* 箭头高度；与 width 一致时角度最稳定。 */
+  border-right: 2px solid currentColor; /* chevron 的一条线，颜色跟随按钮 color。 */
+  border-bottom: 2px solid currentColor; /* chevron 的另一条线，粗细影响图标重量。 */
+  transition: transform 240ms ease-in-out; /* 开合状态变化时箭头方向平滑切换。 */
 }
 
 .panelToggle:hover {
-  background: rgba(49, 79, 82, 0.14);
+  background:
+    radial-gradient(circle at 35% 28%, rgba(255, 249, 230, 0.98), rgba(219, 205, 166, 0.9) 58%, rgba(49, 79, 82, 0.28)),
+    rgba(49, 79, 82, 0.14);
   border-color: rgba(49, 79, 82, 0.46);
   color: var(--cyan-ink);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.82),
+    0 12px 26px rgba(73, 48, 18, 0.24),
+    0 0 0 5px rgba(245, 230, 200, 0.58);
+}
+
+.panelToggle:active {
+  box-shadow:
+    inset 0 2px 5px rgba(73, 48, 18, 0.18),
+    0 6px 16px rgba(73, 48, 18, 0.16),
+    0 0 0 4px rgba(245, 230, 200, 0.42);
 }
 
 .panelToggleLeft {
-  top: 50%;
-  left: calc(var(--page-pad-x) + var(--left-codex-width) + 18px);
-  border-radius: 0 4px 4px 0;
-  transform: translateY(-50%);
+  top: 50%; /* 垂直居中；要避开内容可改为 46% 或 54%。 */
+  left: calc(var(--page-pad-x) + var(--left-codex-width) + 8px); /* 打开时贴在左栏右缘。 */
+  transform: translateY(-50%); /* 与 top 配合完成垂直居中。 */
 }
 
 .panelToggleRight {
-  top: 50%;
-  right: calc(var(--right-reserved) - var(--side-gap));
-  border-radius: 4px 0 0 4px;
-  transform: translateY(-50%);
+  top: 50%; /* 与左侧按钮保持同一高度。 */
+  right: max(40px, calc(var(--right-reserved) - var(--side-gap) + 15px)); /* 右侧按钮整体向左 30px；数值越大越靠左。 */
+  transform: translateY(-50%); /* 与 top 配合完成垂直居中。 */
+}
+
+.panelToggleLeft[aria-expanded="true"]::before,
+.panelToggleRight[aria-expanded="false"]::before {
+  transform: rotate(135deg) translate(-1px, -1px); /* 指向左：收起左栏 / 展开右栏。 */
+}
+
+.panelToggleLeft[aria-expanded="false"]::before,
+.panelToggleRight[aria-expanded="true"]::before {
+  transform: rotate(-45deg) translate(-1px, -1px); /* 指向右：展开左栏 / 收起右栏。 */
+}
+
+.panelToggleLeft:hover,
+.panelToggleRight:hover {
+  transform: translateY(-50%) scale(1.06);
+}
+
+.panelToggleLeft:active,
+.panelToggleRight:active {
+  transform: translateY(-50%) scale(0.97);
 }
 
 .experienceShell[data-left-panel="closed"] .panelToggleLeft {
-  left: 0;
+  left: 10px;
 }
 
 .experienceShell[data-right-panel="closed"] .panelToggleRight {
-  right: 0;
+  right: 40px; /* 收起后也保持向左 30px，避免贴屏幕边缘。 */
 }
 
 .panelClosed {
@@ -582,6 +632,7 @@
   place-items: center;
   margin-bottom: 30px;
   border: 2px solid rgba(143, 47, 40, 0.72);
+  border-radius: var(--component-radius-node-card);
   color: var(--cinnabar);
   font-family: var(--font-title);
   font-size: 58px;
@@ -650,7 +701,7 @@
     rgba(245, 230, 200, 0.55);
   backdrop-filter: blur(3px);
   box-shadow: 0 18px 35px rgba(85, 55, 20, 0.14);
-  clip-path: polygon(0 1%, 99% 0, 100% 98%, 1% 100%);
+  border-radius: var(--component-radius-panel);
 }
 
 .eraPaper::before {
@@ -711,6 +762,7 @@
 
 .eraTags span {
   border: 1px solid rgba(49, 79, 82, 0.28);
+  border-radius: var(--component-radius-tag);
   color: var(--cyan-ink);
   padding: 5px 9px;
   font-family: var(--font-ui);
@@ -734,7 +786,7 @@
   min-height: 150px;
   text-align: left;
   border: 1px solid rgba(74, 53, 28, 0.24);
-  border-radius: 2px;
+  border-radius: var(--component-radius-node-card);
   background:
     linear-gradient(180deg, rgba(255, 249, 230, 0.7), rgba(234, 215, 176, 0.5)),
     rgba(245, 230, 200, 0.44);
@@ -762,6 +814,7 @@
   position: absolute;
   inset: 7px;
   border: 1px solid rgba(143, 47, 40, 0.36);
+  border-radius: calc(var(--component-radius-node-card) - 2px);
 }
 
 .techSeal {
@@ -773,6 +826,7 @@
   display: grid;
   place-items: center;
   border: 1px solid var(--node-tone);
+  border-radius: var(--component-radius-tag);
   color: var(--node-tone);
   font-family: var(--font-title);
   font-size: 20px;
@@ -816,6 +870,7 @@
   background: rgba(232, 211, 169, 0.64);
   border-top: 1px solid rgba(74, 53, 28, 0.22);
   border-bottom: 1px solid rgba(74, 53, 28, 0.22);
+  border-radius: var(--component-radius-panel);
   backdrop-filter: blur(6px);
 }
 
@@ -897,15 +952,23 @@
     rgba(245, 230, 200, 0.72);
   backdrop-filter: blur(8px);
   box-shadow: 0 18px 42px rgba(73, 48, 18, 0.22);
-  overflow: auto;
+  border-radius: var(--component-radius-sidebar);
+  overflow-x: hidden; /* 右侧笺注不显示横向侧拉条，超宽内容会被约束在面板内。 */
+  overflow-y: auto; /* 内容超出高度时仍可纵向滚动查看。 */
+  scrollbar-width: none; /* Firefox：隐藏纵向滚动条轨道，但保留滚动能力。 */
   transition: opacity var(--panel-duration) var(--panel-ease),
     transform var(--panel-duration) var(--panel-ease),
     filter var(--panel-duration) var(--panel-ease);
 }
 
+.annotationPanel::-webkit-scrollbar {
+  display: none; /* Chrome/Safari/Edge：隐藏右侧滚动条。 */
+}
+
 .annotationPanel::before {
   inset: 8px;
   border: 1px solid rgba(74, 53, 28, 0.13);
+  border-radius: calc(var(--component-radius-sidebar) - 4px);
 }
 
 .annotationPanel h2,
@@ -1009,6 +1072,7 @@
     linear-gradient(180deg, rgba(255, 249, 230, 0.94), rgba(234, 215, 176, 0.9)),
     var(--paper);
   box-shadow: 0 26px 70px rgba(47, 38, 25, 0.32);
+  border-radius: var(--component-radius-sheet);
   overflow: auto;
   animation: annotationEnter 420ms cubic-bezier(0.4, 0, 0.2, 1) both;
 }
@@ -1016,6 +1080,7 @@
 .searchSheet::before {
   inset: 8px;
   border: 1px solid rgba(74, 53, 28, 0.14);
+  border-radius: calc(var(--component-radius-sheet) - 4px);
 }
 
 .searchHead {
@@ -1033,6 +1098,7 @@
   border: 0;
   border-bottom: 1px solid rgba(74, 53, 28, 0.34);
   background: rgba(255, 252, 238, 0.36);
+  border-radius: var(--component-radius-input) var(--component-radius-input) 0 0;
   padding: 13px 2px;
   color: var(--ink);
   outline: none;
@@ -1048,7 +1114,7 @@
 
 .searchResults button {
   border: 1px solid rgba(74, 53, 28, 0.16);
-  border-radius: 2px;
+  border-radius: var(--component-radius-button);
   background: rgba(245, 230, 200, 0.36);
   color: var(--ink);
   padding: 12px;
@@ -1236,6 +1302,14 @@
     bottom: 78px;
     width: auto;
     max-height: 33vh;
+  }
+
+  .panelToggleLeft {
+    left: 18px;
+  }
+
+  .panelToggleRight {
+    right: 48px;
   }
 
   .timeline {

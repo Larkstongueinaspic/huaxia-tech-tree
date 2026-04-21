@@ -5,6 +5,7 @@ const path = require('path');
 const nodesData = require('./data/nodes.json');
 const categoriesData = require('./data/categories.json');
 const timelineConfig = require('./data/timelineConfig.json');
+const uiConfig = require('./data/uiConfig.json');
 
 const app = express();
 const PORT = process.env.PORT || 5001;
@@ -241,6 +242,10 @@ app.get('/api/positions', (req, res) => {
 
 app.get('/api/timeline-config', (req, res) => {
   res.json(timelineConfig);
+});
+
+app.get('/api/ui-config', (req, res) => {
+  res.json(uiConfig);
 });
 
 app.get('/api/adjacency', (req, res) => {

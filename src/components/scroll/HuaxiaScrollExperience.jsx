@@ -8,6 +8,7 @@ import { NodeTooltip } from "../NodeTooltip";
 import { NODE_RADIUS, VIEW_BOX } from "../../utils/constants";
 import { edgePath } from "../../utils/graphUtils";
 import { computeEraTimelinePositions } from "../../utils/timelineUtils";
+import { buildRadiusCssVars } from "../../config/uiConfig";
 
 export const PANEL_COLLAPSE_EFFECTS = {
   SLIDE: "slide",
@@ -238,9 +239,7 @@ function PanelToggle({ side, isOpen, onToggle }) {
       onClick={onToggle}
       aria-label={isOpen ? `收起${side === "left" ? "左侧卷目" : "右侧笺注"}` : `展开${side === "left" ? "左侧卷目" : "右侧笺注"}`}
       aria-expanded={isOpen}
-    >
-      {side === "left" ? (isOpen ? "‹" : "›") : (isOpen ? "›" : "‹")}
-    </button>
+    />
   );
 }
 
@@ -633,6 +632,7 @@ export function HuaxiaScrollExperience({
   actions,
   isDragging,
   collapseEffect = DEFAULT_PANEL_COLLAPSE_EFFECT,
+  uiConfig,
 }) {
   const categories = useMemo(() => normalizeCategories(CAT), [CAT]);
   const eras = useMemo(
@@ -660,6 +660,7 @@ export function HuaxiaScrollExperience({
   const [leftOpen, setLeftOpen] = useState(true);
   const [rightOpen, setRightOpen] = useState(true);
   const scrollRef = useRef(null);
+  const radiusVars = useMemo(() => buildRadiusCssVars(uiConfig), [uiConfig]);
 
   useEffect(() => {
     if (!eras.length) return;
@@ -710,6 +711,7 @@ export function HuaxiaScrollExperience({
       data-left-panel={leftOpen ? "open" : "closed"}
       data-right-panel={rightOpen ? "open" : "closed"}
       data-collapse-effect={collapseEffect}
+      style={radiusVars}
     >
       <ScrollContainer
         activeEraName={activeEraName}

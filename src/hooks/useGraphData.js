@@ -5,6 +5,7 @@
 
 import { useState, useEffect } from "react";
 import { fetchAllData } from "../services/api";
+import { DEFAULT_UI_CONFIG } from "../config/uiConfig";
 
 export function useGraphData() {
   const [NODES, setNODES] = useState([]);
@@ -14,6 +15,7 @@ export function useGraphData() {
   const [RADJ, setRADJ] = useState({});
   const [NMAP, setNMAP] = useState({});
   const [timelineConfig, setTimelineConfig] = useState([]);
+  const [uiConfig, setUiConfig] = useState(DEFAULT_UI_CONFIG);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -27,6 +29,7 @@ export function useGraphData() {
         setRADJ(data.radj);
         setNMAP(data.nmap);
         setTimelineConfig(data.timelineConfig);
+        setUiConfig(data.uiConfig || DEFAULT_UI_CONFIG);
         setLoading(false);
       })
       .catch(err => {
@@ -36,5 +39,5 @@ export function useGraphData() {
       });
   }, []);
 
-  return { NODES, POS, CAT, ADJ, RADJ, NMAP, timelineConfig, loading, error };
+  return { NODES, POS, CAT, ADJ, RADJ, NMAP, timelineConfig, uiConfig, loading, error };
 }

@@ -26,15 +26,16 @@ export const Sidebar = React.memo(function Sidebar({
   return (
     <>
       <button
+        type="button"
         onClick={() => setIsOpen(p => !p)}
         className="side-panel-toggle side-panel-toggle--left"
+        aria-label={isOpen ? "收起左侧边栏" : "展开左侧边栏"}
+        aria-expanded={isOpen}
         style={{
           "--toggle-offset": isOpen ? "170px" : "0px",
           "--toggle-bg": isOpen ? "rgba(200,160,69,.15)" : "rgba(200,160,69,.3)",
         }}
-      >
-        <span style={{ color: "#8b6914", fontSize: 10 }}>{isOpen ? "«" : "»"}</span>
-      </button>
+      />
       <aside className={panelClassName} style={{ "--panel-width": "172px" }}>
         <div className="side-panel__content">
       <Sec title="节点类别">

@@ -47,7 +47,7 @@ button,
 
 ::-webkit-scrollbar-thumb {
   background: #c8a045;
-  border-radius: 3px;
+  border-radius: var(--component-radius-scroll-thumb);
 }
 
 code {
