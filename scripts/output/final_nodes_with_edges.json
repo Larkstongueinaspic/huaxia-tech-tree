@@ -8,7 +8,10 @@
     "cat": "culture",
     "inv": "唐代工匠",
     "sig": "唐代成熟应用，推动书籍与历书传播，促进文化普及",
-    "id": "woodblock_printing"
+    "id": "woodblock_printing",
+    "outEdges": [
+      "movable_type"
+    ]
   },
   {
     "name": "活字印刷",
@@ -19,7 +22,8 @@
     "cat": "culture",
     "inv": "毕昇",
     "sig": "推动书籍复制效率跃升，开启印刷技术新阶段",
-    "id": "movable_type"
+    "id": "movable_type",
+    "outEdges": []
   },
   {
     "name": "古书装订",
@@ -30,7 +34,10 @@
     "cat": "culture",
     "inv": "工匠",
     "sig": "促进书籍保存与传播，体现印刷文化发展",
-    "id": "ancient_chinese_bookbinding"
+    "id": "ancient_chinese_bookbinding",
+    "outEdges": [
+      "movable_type"
+    ]
   },
   {
     "name": "水运浑象",
@@ -41,7 +48,10 @@
     "cat": "science",
     "inv": "张衡",
     "sig": "首次应用水力驱动浑象，改进补偿水箱，推动天文学观测精度提升",
-    "id": "water_powered_celestial_globe"
+    "id": "water_powered_celestial_globe",
+    "outEdges": [
+      "water_powered_astronomical_clock_tower"
+    ]
   },
   {
     "name": "打捞",
@@ -52,7 +62,10 @@
     "cat": "engineering",
     "inv": "怀丙",
     "sig": "宋代僧人怀丙利用浮力原理打捞黄河铁牛，展现古代工程智慧。",
-    "id": "ancient_salvage_technology"
+    "id": "ancient_salvage_technology",
+    "outEdges": [
+      "pulley"
+    ]
   },
   {
     "name": "漕船",
@@ -63,7 +76,10 @@
     "cat": "navigation",
     "inv": "汉朝工匠",
     "sig": "采用平铺船体与前后帆设计，提升古代内河运输效率",
-    "id": "cao_ship"
+    "id": "cao_ship",
+    "outEdges": [
+      "watertight_compartments"
+    ]
   },
   {
     "name": "水力风箱",
@@ -74,7 +90,10 @@
     "cat": "metallurgy",
     "inv": "杜诗",
     "sig": "利用水车驱动风箱，提高冶铁产量，推动冶铁业发展",
-    "id": "water_powered_bellows"
+    "id": "water_powered_bellows",
+    "outEdges": [
+      "hand_and_water_powered_fans"
+    ]
   },
   {
     "name": "传动带",
@@ -85,7 +104,8 @@
     "cat": "textile",
     "inv": "工匠",
     "sig": "提升纺车效率，推动古代纺织技术发展",
-    "id": "transmission_belt"
+    "id": "transmission_belt",
+    "outEdges": []
   },
   {
     "name": "钻探",
@@ -96,7 +116,10 @@
     "cat": "engineering",
     "inv": "汉代工匠",
     "sig": "汉代已用于深井开采，钻孔深度达600米，展现先进工程技术。",
-    "id": "ancient_chinese_drilling"
+    "id": "ancient_chinese_drilling",
+    "outEdges": [
+      "ancient_chinese_gas_container"
+    ]
   },
   {
     "name": "多管条播机",
@@ -107,7 +130,10 @@
     "cat": "agriculture",
     "inv": "汉朝工匠",
     "sig": "提高播种效率，促进古代中国农业发展",
-    "id": "multi_tube_seed_drill"
+    "id": "multi_tube_seed_drill",
+    "outEdges": [
+      "winnowing_fan"
+    ]
   },
   {
     "name": "青瓷",
@@ -118,7 +144,8 @@
     "cat": "craft",
     "inv": "工匠",
     "sig": "东汉起源，北宋成熟，釉色独特，影响后世陶瓷发展",
-    "id": "celadon_porcelain"
+    "id": "celadon_porcelain",
+    "outEdges": []
   },
   {
     "name": "负数符号与使用负数",
@@ -129,7 +156,8 @@
     "cat": "math",
     "inv": "刘徽",
     "sig": "《九章算术》记载负数，刘徽用算筹系统表示，推动早期数学发展",
-    "id": "negative_number_notation"
+    "id": "negative_number_notation",
+    "outEdges": []
   },
   {
     "name": "卡瓦列里原理",
@@ -140,7 +168,10 @@
     "cat": "math",
     "inv": "刘徽",
     "sig": "中国古代几何学重要原理，记载于《九章算术》，体现早期数学成就。",
-    "id": "cavalieri_s_principle_in_ancient_china"
+    "id": "cavalieri_s_principle_in_ancient_china",
+    "outEdges": [
+      "negative_number_notation"
+    ]
   },
   {
     "name": "曲柄",
@@ -151,7 +182,11 @@
     "cat": "engineering",
     "inv": "工匠",
     "sig": "应用于风扇车、磨坊等，推动古代农业和手工业发展",
-    "id": "crank_handle"
+    "id": "crank_handle",
+    "outEdges": [
+      "winnowing_fan",
+      "water_powered_mill"
+    ]
   },
   {
     "name": "精炼炉",
@@ -162,7 +197,10 @@
     "cat": "metallurgy",
     "inv": "战国工匠",
     "sig": "中国古代炼铁关键设备，促进铸铁向钢的转化，提升冶金技术",
-    "id": "refining_furnace"
+    "id": "refining_furnace",
+    "outEdges": [
+      "ancient_chinese_blast_furnace"
+    ]
   },
   {
     "name": "万向轴",
@@ -173,7 +211,10 @@
     "cat": "engineering",
     "inv": "丁缓",
     "sig": "汉朝发明，用于保持炉心水平，后扩展至门窗铰链与暖炉，体现早期机械平衡技术",
-    "id": "gimbal_mechanism"
+    "id": "gimbal_mechanism",
+    "outEdges": [
+      "water_powered_mill"
+    ]
   },
   {
     "name": "玉衣",
@@ -184,7 +225,8 @@
     "cat": "culture",
     "inv": "汉朝工匠",
     "sig": "汉代贵族殓葬服饰，体现玉文化在丧葬中的重要性",
-    "id": "jade_burial_suit"
+    "id": "jade_burial_suit",
+    "outEdges": []
   },
   {
     "name": "立体地势图",
@@ -195,7 +237,8 @@
     "cat": "engineering",
     "inv": "工匠",
     "sig": "用于军事和地理展示，提升地形认知与战略规划能力",
-    "id": "three_dimensional_relief_maps"
+    "id": "three_dimensional_relief_maps",
+    "outEdges": []
   },
   {
     "name": "地震仪",
@@ -206,7 +249,10 @@
     "cat": "science",
     "inv": "张衡",
     "sig": "世界首台地震仪，利用惯性原理指示地震方向，用于朝廷救灾。",
-    "id": "seismoscope"
+    "id": "seismoscope",
+    "outEdges": [
+      "south_pointing_chariot"
+    ]
   },
   {
     "name": "独轮车",
@@ -217,7 +263,10 @@
     "cat": "engineering",
     "inv": "工匠",
     "sig": "中国古代运输工具，提高搬运效率，促进农业与工程建设。",
-    "id": "wheelbarrow"
+    "id": "wheelbarrow",
+    "outEdges": [
+      "wooden_ox_and_gliding_horse"
+    ]
   },
   {
     "name": "水车动力傀儡戏",
@@ -228,7 +277,10 @@
     "cat": "engineering",
     "inv": "马钧",
     "sig": "利用水车驱动木偶表演，展现古代机械自动化技术，影响后世傀儡戏发展。",
-    "id": "water_powered_puppet_theater"
+    "id": "water_powered_puppet_theater",
+    "outEdges": [
+      "automatic_wine_boat_with_mechanical_figures"
+    ]
   },
   {
     "name": "风扇车",
@@ -239,7 +291,10 @@
     "cat": "agriculture",
     "inv": "汉代工匠",
     "sig": "汉代出现，用于谷物加工，提高分离粗糠效率，促进农业发展",
-    "id": "winnowing_fan"
+    "id": "winnowing_fan",
+    "outEdges": [
+      "animal_powered_grinding_cart"
+    ]
   },
   {
     "name": "人力和水力旋转风扇",
@@ -250,7 +305,10 @@
     "cat": "engineering",
     "inv": "丁缓",
     "sig": "汉朝发明，唐朝水力化，宋朝普及，用于通风降温技术",
-    "id": "hand_and_water_powered_fans"
+    "id": "hand_and_water_powered_fans",
+    "outEdges": [
+      "water_powered_puppet_theater"
+    ]
   },
   {
     "name": "铬的利用",
@@ -261,7 +319,8 @@
     "cat": "metallurgy",
     "inv": "秦代工匠",
     "sig": "秦代已用铬镀铜箭防腐，早于西方，体现古代金属处理先进技术。",
-    "id": "chromium_use_in_ancient_china"
+    "id": "chromium_use_in_ancient_china",
+    "outEdges": []
   },
   {
     "name": "象棋",
@@ -272,7 +331,8 @@
     "cat": "culture",
     "inv": "韩信",
     "sig": "起源于中国，经汉朝韩信发明，后流传演变，成为传统棋类游戏。",
-    "id": "chinese_chess"
+    "id": "chinese_chess",
+    "outEdges": []
   },
   {
     "name": "走马灯",
@@ -283,7 +343,8 @@
     "cat": "craft",
     "inv": "丁缓",
     "sig": "利用热气流驱动旋转，用于娱乐和宗教仪式，体现早期机械原理",
-    "id": "chinese_zoetrope_lantern"
+    "id": "chinese_zoetrope_lantern",
+    "outEdges": []
   },
   {
     "name": "科举",
@@ -294,7 +355,10 @@
     "cat": "culture",
     "inv": "隋朝",
     "sig": "开创官员选拔新制度，影响中国社会结构千年",
-    "id": "imperial_examination_system"
+    "id": "imperial_examination_system",
+    "outEdges": [
+      "woodblock_printing"
+    ]
   },
   {
     "name": "盘山渠道",
@@ -305,7 +369,10 @@
     "cat": "engineering",
     "inv": "史禄",
     "sig": "连接湘江与漓江，用于输送粮草，促进南方统一与水利工程发展",
-    "id": "mountain_contour_canal"
+    "id": "mountain_contour_canal",
+    "outEdges": [
+      "three_dimensional_relief_maps"
+    ]
   },
   {
     "name": "连弩",
@@ -316,7 +383,8 @@
     "cat": "military",
     "inv": "诸葛亮",
     "sig": "提高射击效率，增强军事作战能力，体现兵器制造创新",
-    "id": "repeating_crossbow"
+    "id": "repeating_crossbow",
+    "outEdges": []
   },
   {
     "name": "合成钢",
@@ -327,7 +395,8 @@
     "cat": "metallurgy",
     "inv": "綦母怀文",
     "sig": "融合熟铁与铸铁，提升钢铁质量，用于工具和武器制造",
-    "id": "synthetic_steel"
+    "id": "synthetic_steel",
+    "outEdges": []
   },
   {
     "name": "马鞅",
@@ -338,7 +407,10 @@
     "cat": "engineering",
     "inv": "汉朝工匠",
     "sig": "改进轭具设计，提升马匹牵引效率，促进古代运输发展",
-    "id": "horse_yoke"
+    "id": "horse_yoke",
+    "outEdges": [
+      "wheelbarrow"
+    ]
   },
   {
     "name": "磨车",
@@ -349,7 +421,8 @@
     "cat": "engineering",
     "inv": "解飞和魏猛变",
     "sig": "后赵时期发明的兽力磨谷机械，提高谷物加工效率，后失传。",
-    "id": "animal_powered_grinding_cart"
+    "id": "animal_powered_grinding_cart",
+    "outEdges": []
   },
   {
     "name": "油墨",
@@ -360,7 +433,8 @@
     "cat": "culture",
     "inv": "沈括",
     "sig": "宋代从石油油烟提取，光泽如漆，推动书写材料发展",
-    "id": "ink_from_petroleum_soot"
+    "id": "ink_from_petroleum_soot",
+    "outEdges": []
   },
   {
     "name": "水密隔舱",
@@ -371,7 +445,8 @@
     "cat": "navigation",
     "inv": "工匠",
     "sig": "提高船舶抗沉性，影响世界造船技术发展",
-    "id": "watertight_compartments"
+    "id": "watertight_compartments",
+    "outEdges": []
   },
   {
     "name": "非摩擦火柴",
@@ -382,7 +457,8 @@
     "cat": "craft",
     "inv": "宫女",
     "sig": "早期火柴发明，用于生火取暖，后发展为商品'火寸'。",
-    "id": "early_chinese_match"
+    "id": "early_chinese_match",
+    "outEdges": []
   },
   {
     "name": "风筝载人飞行",
@@ -393,7 +469,8 @@
     "cat": "engineering",
     "inv": "北齐工匠",
     "sig": "早期飞行技术探索，体现中国古代工程创新精神",
-    "id": "kite_human_flight"
+    "id": "kite_human_flight",
+    "outEdges": []
   },
   {
     "name": "脚启动的自动门",
@@ -404,7 +481,10 @@
     "cat": "engineering",
     "inv": "隋朝工匠",
     "sig": "隋朝皇宫机械装置，体现古代自动化技术应用",
-    "id": "foot_triggered_automatic_door"
+    "id": "foot_triggered_automatic_door",
+    "outEdges": [
+      "chinese_escapement_mechanism"
+    ]
   },
   {
     "name": "气瓶",
@@ -415,7 +495,8 @@
     "cat": "engineering",
     "inv": "工匠",
     "sig": "利用天然气和石油的便携式容器，促进能源利用与照明技术发展",
-    "id": "ancient_chinese_gas_container"
+    "id": "ancient_chinese_gas_container",
+    "outEdges": []
   },
   {
     "name": "纸币",
@@ -426,7 +507,8 @@
     "cat": "trade",
     "inv": "宋代政府",
     "sig": "世界上最早的纸币体系，促进贸易流通，应对货币短缺问题",
-    "id": "paper_money"
+    "id": "paper_money",
+    "outEdges": []
   },
   {
     "name": "透光镜",
@@ -437,7 +519,8 @@
     "cat": "craft",
     "inv": "工匠",
     "sig": "唐代记载浇铸方法，宋代沈括描述其透光现象，体现古代铜镜工艺与光学探索。",
-    "id": "light_transmitting_mirror"
+    "id": "light_transmitting_mirror",
+    "outEdges": []
   },
   {
     "name": "单孔敞肩坦弧石拱桥",
@@ -448,7 +531,8 @@
     "cat": "engineering",
     "inv": "李春",
     "sig": "中国现存最早单孔敞肩坦弧石拱桥，结构创新影响后世桥梁设计",
-    "id": "zhaozhou_bridge"
+    "id": "zhaozhou_bridge",
+    "outEdges": []
   },
   {
     "name": "擒纵器",
@@ -459,7 +543,8 @@
     "cat": "engineering",
     "inv": "一行",
     "sig": "唐代僧侣一行开发，应用于水力浑象仪，实现定时功能，推动古代计时技术发展。",
-    "id": "chinese_escapement_mechanism"
+    "id": "chinese_escapement_mechanism",
+    "outEdges": []
   },
   {
     "name": "披水板",
@@ -470,7 +555,8 @@
     "cat": "navigation",
     "inv": "李筌",
     "sig": "唐朝战船用于稳定航向，减少背风漂移，提升航海安全性。",
-    "id": "leeboard"
+    "id": "leeboard",
+    "outEdges": []
   },
   {
     "name": "自行舟搭载机械呈杯、倒酒木俑",
@@ -481,7 +567,10 @@
     "cat": "engineering",
     "inv": "黄衮",
     "sig": "隋朝宫廷自动化机械，展示古代中国工程技艺与娱乐创新",
-    "id": "automatic_wine_boat_with_mechanical_figures"
+    "id": "automatic_wine_boat_with_mechanical_figures",
+    "outEdges": [
+      "foot_triggered_automatic_door"
+    ]
   },
   {
     "name": "纸牌",
@@ -492,7 +581,10 @@
     "cat": "culture",
     "inv": "唐代工匠",
     "sig": "唐代已有叶子戏记载，宋代流行，明代融入小说角色，丰富娱乐文化",
-    "id": "playing_cards"
+    "id": "playing_cards",
+    "outEdges": [
+      "mahjong"
+    ]
   },
   {
     "name": "豆腐",
@@ -503,7 +595,8 @@
     "cat": "culture",
     "inv": "刘安",
     "sig": "以大豆为原料的传统食品，丰富中国饮食文化",
-    "id": "tofu"
+    "id": "tofu",
+    "outEdges": []
   },
   {
     "name": "菜单",
@@ -514,7 +607,8 @@
     "cat": "culture",
     "inv": "饮食业者",
     "sig": "满足城市商业需求，促进餐饮文化繁荣",
-    "id": "menu_in_song_dynasty"
+    "id": "menu_in_song_dynasty",
+    "outEdges": []
   },
   {
     "name": "不间断链条传送动力",
@@ -525,7 +619,10 @@
     "cat": "engineering",
     "inv": "苏颂",
     "sig": "宋代应用于水运仪象台，展示古代中国机械工程的高超技艺",
-    "id": "continuous_chain_drive"
+    "id": "continuous_chain_drive",
+    "outEdges": [
+      "water_powered_astronomical_clock_tower"
+    ]
   },
   {
     "name": "斗门水闸",
@@ -536,7 +633,8 @@
     "cat": "engineering",
     "inv": "乔维岳",
     "sig": "宋代航运关键发明，提升运河航行安全与效率",
-    "id": "double_gate_sluice"
+    "id": "double_gate_sluice",
+    "outEdges": []
   },
   {
     "name": "烟花",
@@ -547,7 +645,10 @@
     "cat": "craft",
     "inv": "宋朝工匠",
     "sig": "源于火药技术，用于庆典表演，后应用于军事火箭推进。",
-    "id": "fireworks"
+    "id": "fireworks",
+    "outEdges": [
+      "fire_dragon_manual"
+    ]
   },
   {
     "name": "双活塞、火药启动的火焰喷射器",
@@ -558,7 +659,8 @@
     "cat": "military",
     "inv": "宋朝工匠",
     "sig": "五代十国首次实战使用猛火油，宋朝改进为火药启动，提升军事攻击效率。",
-    "id": "double_piston_gunpowder_flamethrower"
+    "id": "double_piston_gunpowder_flamethrower",
+    "outEdges": []
   },
   {
     "name": "手铳",
@@ -569,7 +671,8 @@
     "cat": "military",
     "inv": "元朝工匠",
     "sig": "早期金属管火器，推动火器技术发展，影响军事变革",
-    "id": "hand_cannon"
+    "id": "hand_cannon",
+    "outEdges": []
   },
   {
     "name": "地雷",
@@ -580,7 +683,10 @@
     "cat": "military",
     "inv": "工匠",
     "sig": "推动中国古代军事技术发展，增强防御能力",
-    "id": "landmine"
+    "id": "landmine",
+    "outEdges": [
+      "naval_mine"
+    ]
   },
   {
     "name": "最早印刷地图",
@@ -591,7 +697,10 @@
     "cat": "culture",
     "inv": "杨甲",
     "sig": "标志地图印刷技术早期应用，推动地理知识传播",
-    "id": "earliest_printed_map"
+    "id": "earliest_printed_map",
+    "outEdges": [
+      "movable_type"
+    ]
   },
   {
     "name": "火龙经",
@@ -602,7 +711,10 @@
     "cat": "military",
     "inv": "焦玉和刘基",
     "sig": "记载火箭武器如神火飞鸦，推动中国古代火箭技术发展",
-    "id": "fire_dragon_manual"
+    "id": "fire_dragon_manual",
+    "outEdges": [
+      "naval_mine"
+    ]
   },
   {
     "name": "水雷",
@@ -613,7 +725,8 @@
     "cat": "military",
     "inv": "焦玉和刘基",
     "sig": "早期水雷设计，用于河川湖海，提升古代水战防御能力",
-    "id": "naval_mine"
+    "id": "naval_mine",
+    "outEdges": []
   },
   {
     "name": "猪鬃牙刷",
@@ -624,7 +737,8 @@
     "cat": "culture",
     "inv": "明朝工匠",
     "sig": "明代已有使用记录，体现古代中国口腔卫生实践。",
-    "id": "pig_bristle_toothbrush"
+    "id": "pig_bristle_toothbrush",
+    "outEdges": []
   },
   {
     "name": "麻将",
@@ -635,7 +749,8 @@
     "cat": "culture",
     "inv": "陈鱼门",
     "sig": "源自中国牌类游戏，融合历史元素，成为流行文化象征",
-    "id": "mahjong"
+    "id": "mahjong",
+    "outEdges": []
   },
   {
     "name": "青蒿素的抗疟性质",
@@ -646,7 +761,8 @@
     "cat": "medicine",
     "inv": "屠呦呦团队",
     "sig": "从传统方剂中提取验证，革新全球疟疾治疗，挽救无数生命",
-    "id": "artemisinin_antimalarial_properties"
+    "id": "artemisinin_antimalarial_properties",
+    "outEdges": []
   },
   {
     "name": "多样种类的杂交水稻",
@@ -657,7 +773,8 @@
     "cat": "agriculture",
     "inv": "袁隆平团队",
     "sig": "提高水稻产量，在耕地有限条件下保障粮食安全，推广至亚非多国。",
-    "id": "hybrid_rice_varieties"
+    "id": "hybrid_rice_varieties",
+    "outEdges": []
   },
   {
     "name": "玉礼器",
@@ -668,7 +785,10 @@
     "cat": "culture",
     "inv": "先民",
     "sig": "新石器时代用于祭祀礼仪，体现早期社会等级与宗教信仰",
-    "id": "jade_ritual_objects"
+    "id": "jade_ritual_objects",
+    "outEdges": [
+      "alligator_drum"
+    ]
   },
   {
     "name": "长方形棺椁",
@@ -679,7 +799,10 @@
     "cat": "culture",
     "inv": "先民",
     "sig": "新石器时代起源，体现早期丧葬文化和身份等级制度",
-    "id": "rectangular_coffin_and_outer_coffin"
+    "id": "rectangular_coffin_and_outer_coffin",
+    "outEdges": [
+      "boat_shaped_wooden_coffin"
+    ]
   },
   {
     "name": "鼍鼓",
@@ -690,7 +813,11 @@
     "cat": "culture",
     "inv": "先民",
     "sig": "新石器时代祭祀乐器，体现早期中国仪礼文化",
-    "id": "alligator_drum"
+    "id": "alligator_drum",
+    "outEdges": [
+      "taotie_motif",
+      "rectangular_coffin_and_outer_coffin"
+    ]
   },
   {
     "name": "生漆",
@@ -701,7 +828,8 @@
     "cat": "craft",
     "inv": "先民",
     "sig": "新石器时代已使用，推动漆器工艺发展，成为重要装饰材料",
-    "id": "raw_lacquer"
+    "id": "raw_lacquer",
+    "outEdges": []
   },
   {
     "name": "餐叉",
@@ -712,7 +840,10 @@
     "cat": "culture",
     "inv": "先民",
     "sig": "齐家文化已有骨叉，商朝墓葬常见，体现古代饮食文化悠久历史",
-    "id": "ancient_chinese_fork"
+    "id": "ancient_chinese_fork",
+    "outEdges": [
+      "chopsticks"
+    ]
   },
   {
     "name": "三足陶器",
@@ -723,7 +854,11 @@
     "cat": "craft",
     "inv": "先民",
     "sig": "新石器时代至商朝独特陶器，体现早期工艺与文化交流",
-    "id": "three_legged_pottery"
+    "id": "three_legged_pottery",
+    "outEdges": [
+      "raw_lacquer",
+      "pottery_burial_urn"
+    ]
   },
   {
     "name": "龟卜",
@@ -734,7 +869,8 @@
     "cat": "culture",
     "inv": "先民",
     "sig": "早期宗教文化实践，体现祭祀占卜传统",
-    "id": "turtle_shell_divination"
+    "id": "turtle_shell_divination",
+    "outEdges": []
   },
   {
     "name": "三角犁",
@@ -745,7 +881,10 @@
     "cat": "agriculture",
     "inv": "先民",
     "sig": "推动密集耕作技术发展，为畜力牵引奠定基础",
-    "id": "triangular_plow"
+    "id": "triangular_plow",
+    "outEdges": [
+      "heavy_iron_plow_with_moldboard"
+    ]
   },
   {
     "name": "饕餮",
@@ -756,7 +895,10 @@
     "cat": "culture",
     "inv": "先民",
     "sig": "新石器时代至商周时期的重要装饰图案，体现早期艺术与信仰",
-    "id": "taotie_motif"
+    "id": "taotie_motif",
+    "outEdges": [
+      "raw_lacquer"
+    ]
   },
   {
     "name": "用盐",
@@ -767,7 +909,10 @@
     "cat": "trade",
     "inv": "先民",
     "sig": "盐铁垄断成为国家重要财源，影响经济政策与民生",
-    "id": "salt_use_and_monopoly"
+    "id": "salt_use_and_monopoly",
+    "outEdges": [
+      "knife_money"
+    ]
   },
   {
     "name": "丝绸",
@@ -778,7 +923,10 @@
     "cat": "textile",
     "inv": "先民",
     "sig": "新石器时代已有丝绸，是中国古代重要发明与文化象征",
-    "id": "silk"
+    "id": "silk",
+    "outEdges": [
+      "loom"
+    ]
   },
   {
     "name": "大豆种植",
@@ -789,7 +937,10 @@
     "cat": "agriculture",
     "inv": "先民",
     "sig": "起源于中国，自野生驯化，成为东亚重要农作物。",
-    "id": "soybean_cultivation"
+    "id": "soybean_cultivation",
+    "outEdges": [
+      "triangular_plow"
+    ]
   },
   {
     "name": "蒸锅",
@@ -800,7 +951,8 @@
     "cat": "craft",
     "inv": "先民",
     "sig": "古代烹饪技术的重要发明，用于蒸饭，促进饮食文化发展",
-    "id": "ancient_chinese_steamer"
+    "id": "ancient_chinese_steamer",
+    "outEdges": []
   },
   {
     "name": "舟形木棺",
@@ -811,7 +963,10 @@
     "cat": "culture",
     "inv": "先民",
     "sig": "体现华南早期丧葬习俗，展示古代木工工艺水平",
-    "id": "boat_shaped_wooden_coffin"
+    "id": "boat_shaped_wooden_coffin",
+    "outEdges": [
+      "turtle_shell_divination"
+    ]
   },
   {
     "name": "瓮棺",
@@ -822,7 +977,10 @@
     "cat": "culture",
     "inv": "先民",
     "sig": "新石器时代葬具，体现早期灵魂观念与丧葬习俗",
-    "id": "pottery_burial_urn"
+    "id": "pottery_burial_urn",
+    "outEdges": [
+      "rectangular_coffin_and_outer_coffin"
+    ]
   },
   {
     "name": "针灸",
@@ -833,7 +991,8 @@
     "cat": "medicine",
     "inv": "先民",
     "sig": "传统医学重要疗法，通过针刺穴位治疗疾病，至今临床广泛应用。",
-    "id": "acupuncture_therapy"
+    "id": "acupuncture_therapy",
+    "outEdges": []
   },
   {
     "name": "醴酒",
@@ -844,7 +1003,8 @@
     "cat": "culture",
     "inv": "先民",
     "sig": "商周时期用于祭祀，改进发酵技术提高酒精度，影响后世酿酒工艺。",
-    "id": "ancient_chinese_alcoholic_beverage"
+    "id": "ancient_chinese_alcoholic_beverage",
+    "outEdges": []
   },
   {
     "name": "编钟",
@@ -855,7 +1015,8 @@
     "cat": "culture",
     "inv": "周代工匠",
     "sig": "体现古代音乐与科技成就，曾作为度量衡基准，涉及精密铸造工艺。",
-    "id": "bianzhong_bronze_bells"
+    "id": "bianzhong_bronze_bells",
+    "outEdges": []
   },
   {
     "name": "铸铁",
@@ -866,7 +1027,10 @@
     "cat": "metallurgy",
     "inv": "先民",
     "sig": "中国古代早期铸铁技术，促进工具普及与冶金发展",
-    "id": "cast_iron"
+    "id": "cast_iron",
+    "outEdges": [
+      "iron_melting_furnace"
+    ]
   },
   {
     "name": "高炉",
@@ -877,7 +1041,10 @@
     "cat": "metallurgy",
     "inv": "汉朝工匠",
     "sig": "推动生铁生产，促进冶铁技术发展，广泛应用于盐铁业。",
-    "id": "ancient_chinese_blast_furnace"
+    "id": "ancient_chinese_blast_furnace",
+    "outEdges": [
+      "water_powered_bellows"
+    ]
   },
   {
     "name": "熔铁炉",
@@ -888,7 +1055,10 @@
     "cat": "metallurgy",
     "inv": "战国工匠",
     "sig": "提升铁器熔炼效率，推动中国早期铁器制造发展",
-    "id": "iron_melting_furnace"
+    "id": "iron_melting_furnace",
+    "outEdges": [
+      "refining_furnace"
+    ]
   },
   {
     "name": "蹴鞠",
@@ -899,7 +1069,10 @@
     "cat": "culture",
     "inv": "先民",
     "sig": "战国时期流行，用于娱乐和军事训练，促进体育文化发展",
-    "id": "ancient_chinese_football"
+    "id": "ancient_chinese_football",
+    "outEdges": [
+      "chinese_chess"
+    ]
   },
   {
     "name": "筷子",
@@ -910,7 +1083,8 @@
     "cat": "culture",
     "inv": "先民",
     "sig": "中国古代餐具，体现饮食文化发展，传播广泛。",
-    "id": "chopsticks"
+    "id": "chopsticks",
+    "outEdges": []
   },
   {
     "name": "手持弩",
@@ -921,7 +1095,10 @@
     "cat": "military",
     "inv": "工匠",
     "sig": "提升远程武器精度与威力，对汉匈战争胜利有重要贡献",
-    "id": "handheld_crossbow"
+    "id": "handheld_crossbow",
+    "outEdges": [
+      "crossbow_trigger_mechanism"
+    ]
   },
   {
     "name": "牵引抛石机",
@@ -932,7 +1109,10 @@
     "cat": "military",
     "inv": "战国工匠",
     "sig": "战国时期人力牵引抛石机，用于军事攻击，提升攻城能力",
-    "id": "human_powered_traction_trebuchet"
+    "id": "human_powered_traction_trebuchet",
+    "outEdges": [
+      "repeating_crossbow"
+    ]
   },
   {
     "name": "风筝",
@@ -943,7 +1123,10 @@
     "cat": "culture",
     "inv": "鲁国公输班",
     "sig": "早期用于军事信号，后发展为民间娱乐，体现古代飞行探索",
-    "id": "kite"
+    "id": "kite",
+    "outEdges": [
+      "kite_human_flight"
+    ]
   },
   {
     "name": "小孔成像",
@@ -954,7 +1137,8 @@
     "cat": "science",
     "inv": "墨子",
     "sig": "墨家发现光学原理，推动中国古代光学发展",
-    "id": "pinhole_imaging"
+    "id": "pinhole_imaging",
+    "outEdges": []
   },
   {
     "name": "斗栱",
@@ -965,7 +1149,8 @@
     "cat": "engineering",
     "inv": "工匠",
     "sig": "中国古代建筑核心结构，兼具支撑与装饰功能，影响深远。",
-    "id": "dougong_bracket"
+    "id": "dougong_bracket",
+    "outEdges": []
   },
   {
     "name": "织布机",
@@ -976,7 +1161,10 @@
     "cat": "textile",
     "inv": "工匠",
     "sig": "提升织物生产效率，推动中国古代纺织业发展",
-    "id": "loom"
+    "id": "loom",
+    "outEdges": [
+      "transmission_belt"
+    ]
   },
   {
     "name": "刀币",
@@ -987,7 +1175,8 @@
     "cat": "trade",
     "inv": "先民",
     "sig": "早期青铜货币，促进春秋战国时期贸易流通与经济发展",
-    "id": "knife_money"
+    "id": "knife_money",
+    "outEdges": []
   },
   {
     "name": "折叠伞",
@@ -998,7 +1187,8 @@
     "cat": "craft",
     "inv": "工匠",
     "sig": "汉代已有使用，材料从丝绸转向油纸，体现古代工艺发展",
-    "id": "folding_umbrella"
+    "id": "folding_umbrella",
+    "outEdges": []
   },
   {
     "name": "古琴",
@@ -1009,7 +1199,8 @@
     "cat": "culture",
     "inv": "先民",
     "sig": "中国最古老弦乐器之一，商朝已有记载，成为文人四艺核心",
-    "id": "ancient_chinese_zither"
+    "id": "ancient_chinese_zither",
+    "outEdges": []
   },
   {
     "name": "重型带犁板铁犁",
@@ -1020,7 +1211,10 @@
     "cat": "agriculture",
     "inv": "汉代工匠",
     "sig": "汉代铁犁改进，提高翻土效率，推动农业生产力发展",
-    "id": "heavy_iron_plow_with_moldboard"
+    "id": "heavy_iron_plow_with_moldboard",
+    "outEdges": [
+      "straight_beam_plow"
+    ]
   },
   {
     "name": "曲辕犁",
@@ -1031,7 +1225,8 @@
     "cat": "agriculture",
     "inv": "唐朝工匠",
     "sig": "改进犁具设计，提升耕作效率，促进古代农业发展",
-    "id": "curved_shaft_plow"
+    "id": "curved_shaft_plow",
+    "outEdges": []
   },
   {
     "name": "直辕犁",
@@ -1042,7 +1237,10 @@
     "cat": "agriculture",
     "inv": "汉代工匠",
     "sig": "标志着早期农业耕作技术的进步，提高耕作效率",
-    "id": "straight_beam_plow"
+    "id": "straight_beam_plow",
+    "outEdges": [
+      "curved_shaft_plow"
+    ]
   },
   {
     "name": "坎儿井",
@@ -1053,7 +1251,10 @@
     "cat": "engineering",
     "inv": "先民",
     "sig": "干旱地区的地下水利工程，促进新疆农业发展，体现古代智慧。",
-    "id": "karez_irrigation_system"
+    "id": "karez_irrigation_system",
+    "outEdges": [
+      "dujiangyan_irrigation_system"
+    ]
   },
   {
     "name": "筒车",
@@ -1064,7 +1265,10 @@
     "cat": "agriculture",
     "inv": "工匠",
     "sig": "提升农田灌溉效率，展现古代农业机械智慧",
-    "id": "water_wheel_for_irrigation"
+    "id": "water_wheel_for_irrigation",
+    "outEdges": [
+      "curved_shaft_plow"
+    ]
   },
   {
     "name": "都江堰",
@@ -1075,7 +1279,10 @@
     "cat": "engineering",
     "inv": "李冰父子",
     "sig": "战国时期修建，无坝引水技术，用于灌溉防洪，至今仍在使用。",
-    "id": "dujiangyan_irrigation_system"
+    "id": "dujiangyan_irrigation_system",
+    "outEdges": [
+      "mountain_contour_canal"
+    ]
   },
   {
     "name": "浑象",
@@ -1086,7 +1293,10 @@
     "cat": "science",
     "inv": "石申、甘德",
     "sig": "古代演示天体运动的天文仪器，体现早期天文学成就",
-    "id": "celestial_globe"
+    "id": "celestial_globe",
+    "outEdges": [
+      "water_powered_celestial_globe"
+    ]
   },
   {
     "name": "水运仪象台",
@@ -1097,7 +1307,8 @@
     "cat": "science",
     "inv": "苏颂",
     "sig": "集观测、计时、演示于一体，代表中国古代天文仪器制造高峰",
-    "id": "water_powered_astronomical_clock_tower"
+    "id": "water_powered_astronomical_clock_tower",
+    "outEdges": []
   },
   {
     "name": "指南车",
@@ -1108,7 +1319,8 @@
     "cat": "navigation",
     "inv": "马钧",
     "sig": "利用差速器指示方向，是中国古代重要的导航仪器。",
-    "id": "south_pointing_chariot"
+    "id": "south_pointing_chariot",
+    "outEdges": []
   },
   {
     "name": "木牛流马",
@@ -1119,7 +1331,8 @@
     "cat": "engineering",
     "inv": "诸葛亮及蒲元",
     "sig": "三国时期蜀汉发明的运输工具，用于北伐后勤支持，提升粮食运输效率。",
-    "id": "wooden_ox_and_gliding_horse"
+    "id": "wooden_ox_and_gliding_horse",
+    "outEdges": []
   },
   {
     "name": "滑轮",
@@ -1130,7 +1343,10 @@
     "cat": "engineering",
     "inv": "汉代工匠",
     "sig": "汉代已用于机械传动，改变力的方向或省力，提升效率。",
-    "id": "pulley"
+    "id": "pulley",
+    "outEdges": [
+      "water_powered_mill"
+    ]
   },
   {
     "name": "链条传动",
@@ -1141,7 +1357,10 @@
     "cat": "engineering",
     "inv": "毕岚",
     "sig": "东汉翻车应用链轮传动，北宋用于天文钟，体现古代机械技术进步",
-    "id": "chain_drive"
+    "id": "chain_drive",
+    "outEdges": [
+      "continuous_chain_drive"
+    ]
   },
   {
     "name": "齿轮传动",
@@ -1152,7 +1371,10 @@
     "cat": "engineering",
     "inv": "工匠",
     "sig": "中国古代机械核心技术，用于辘轳等机械，汉代进一步发展传动应用。",
-    "id": "gear_transmission"
+    "id": "gear_transmission",
+    "outEdges": [
+      "pulley"
+    ]
   },
   {
     "name": "水力磨坊",
@@ -1163,7 +1385,11 @@
     "cat": "engineering",
     "inv": "工匠",
     "sig": "利用水力驱动研磨谷物，体现早期机械传动技术，提升生产效率。",
-    "id": "water_powered_mill"
+    "id": "water_powered_mill",
+    "outEdges": [
+      "chain_drive",
+      "water_powered_bellows"
+    ]
   },
   {
     "name": "风力磨坊",
@@ -1174,7 +1400,8 @@
     "cat": "agriculture",
     "inv": "元朝工匠",
     "sig": "利用风能驱动磨盘，提升农业加工效率，促进生产力发展",
-    "id": "wind_powered_mill"
+    "id": "wind_powered_mill",
+    "outEdges": []
   },
   {
     "name": "弩机",
@@ -1185,6 +1412,9 @@
     "cat": "military",
     "inv": "战国工匠",
     "sig": "提升弓弩射击精度与威力，推动古代军事技术进步",
-    "id": "crossbow_trigger_mechanism"
+    "id": "crossbow_trigger_mechanism",
+    "outEdges": [
+      "repeating_crossbow"
+    ]
   }
 ]

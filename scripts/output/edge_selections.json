@@ -1,0 +1,797 @@
+{
+  "meta": {
+    "node_count": 108,
+    "edge_count": 63,
+    "zero_out_degree_nodes": 49,
+    "avg_out_degree": 0.5833,
+    "max_out_degree": 2,
+    "selection_count": 108,
+    "llm_count": 100,
+    "heuristic_count": 8,
+    "selection_output": "/Users/bo_yu/Documents/bupt/l_ds_design/huaxia-tech-tree/scripts/output/edge_selections.json",
+    "final_output": "/Users/bo_yu/Documents/bupt/l_ds_design/huaxia-tech-tree/scripts/output/final_nodes_with_edges.json"
+  },
+  "items": [
+    {
+      "source_id": "woodblock_printing",
+      "source_name": "雕版印刷",
+      "selected_ids": [
+        "movable_type"
+      ],
+      "method": "llm"
+    },
+    {
+      "source_id": "movable_type",
+      "source_name": "活字印刷",
+      "selected_ids": [],
+      "method": "llm"
+    },
+    {
+      "source_id": "ancient_chinese_bookbinding",
+      "source_name": "古书装订",
+      "selected_ids": [
+        "movable_type"
+      ],
+      "method": "llm"
+    },
+    {
+      "source_id": "water_powered_celestial_globe",
+      "source_name": "水运浑象",
+      "selected_ids": [
+        "water_powered_astronomical_clock_tower"
+      ],
+      "method": "llm"
+    },
+    {
+      "source_id": "ancient_salvage_technology",
+      "source_name": "打捞",
+      "selected_ids": [
+        "pulley"
+      ],
+      "method": "llm"
+    },
+    {
+      "source_id": "cao_ship",
+      "source_name": "漕船",
+      "selected_ids": [
+        "watertight_compartments"
+      ],
+      "method": "llm"
+    },
+    {
+      "source_id": "water_powered_bellows",
+      "source_name": "水力风箱",
+      "selected_ids": [
+        "hand_and_water_powered_fans"
+      ],
+      "method": "llm"
+    },
+    {
+      "source_id": "transmission_belt",
+      "source_name": "传动带",
+      "selected_ids": [],
+      "method": "heuristic"
+    },
+    {
+      "source_id": "ancient_chinese_drilling",
+      "source_name": "钻探",
+      "selected_ids": [
+        "ancient_chinese_gas_container"
+      ],
+      "method": "llm"
+    },
+    {
+      "source_id": "multi_tube_seed_drill",
+      "source_name": "多管条播机",
+      "selected_ids": [
+        "winnowing_fan"
+      ],
+      "method": "llm"
+    },
+    {
+      "source_id": "celadon_porcelain",
+      "source_name": "青瓷",
+      "selected_ids": [],
+      "method": "llm"
+    },
+    {
+      "source_id": "negative_number_notation",
+      "source_name": "负数符号与使用负数",
+      "selected_ids": [],
+      "method": "heuristic"
+    },
+    {
+      "source_id": "cavalieri_s_principle_in_ancient_china",
+      "source_name": "卡瓦列里原理",
+      "selected_ids": [
+        "negative_number_notation"
+      ],
+      "method": "llm"
+    },
+    {
+      "source_id": "crank_handle",
+      "source_name": "曲柄",
+      "selected_ids": [
+        "winnowing_fan",
+        "water_powered_mill"
+      ],
+      "method": "llm"
+    },
+    {
+      "source_id": "refining_furnace",
+      "source_name": "精炼炉",
+      "selected_ids": [
+        "ancient_chinese_blast_furnace"
+      ],
+      "method": "llm"
+    },
+    {
+      "source_id": "gimbal_mechanism",
+      "source_name": "万向轴",
+      "selected_ids": [
+        "chain_drive",
+        "water_powered_mill"
+      ],
+      "method": "llm"
+    },
+    {
+      "source_id": "jade_burial_suit",
+      "source_name": "玉衣",
+      "selected_ids": [],
+      "method": "llm"
+    },
+    {
+      "source_id": "three_dimensional_relief_maps",
+      "source_name": "立体地势图",
+      "selected_ids": [
+        "mountain_contour_canal"
+      ],
+      "method": "llm"
+    },
+    {
+      "source_id": "seismoscope",
+      "source_name": "地震仪",
+      "selected_ids": [
+        "south_pointing_chariot"
+      ],
+      "method": "llm"
+    },
+    {
+      "source_id": "wheelbarrow",
+      "source_name": "独轮车",
+      "selected_ids": [
+        "wooden_ox_and_gliding_horse"
+      ],
+      "method": "llm"
+    },
+    {
+      "source_id": "water_powered_puppet_theater",
+      "source_name": "水车动力傀儡戏",
+      "selected_ids": [
+        "automatic_wine_boat_with_mechanical_figures",
+        "foot_triggered_automatic_door"
+      ],
+      "method": "llm"
+    },
+    {
+      "source_id": "winnowing_fan",
+      "source_name": "风扇车",
+      "selected_ids": [
+        "animal_powered_grinding_cart"
+      ],
+      "method": "llm"
+    },
+    {
+      "source_id": "hand_and_water_powered_fans",
+      "source_name": "人力和水力旋转风扇",
+      "selected_ids": [
+        "water_powered_puppet_theater"
+      ],
+      "method": "llm"
+    },
+    {
+      "source_id": "chromium_use_in_ancient_china",
+      "source_name": "铬的利用",
+      "selected_ids": [],
+      "method": "llm"
+    },
+    {
+      "source_id": "chinese_chess",
+      "source_name": "象棋",
+      "selected_ids": [],
+      "method": "llm"
+    },
+    {
+      "source_id": "chinese_zoetrope_lantern",
+      "source_name": "走马灯",
+      "selected_ids": [],
+      "method": "llm"
+    },
+    {
+      "source_id": "imperial_examination_system",
+      "source_name": "科举",
+      "selected_ids": [
+        "woodblock_printing"
+      ],
+      "method": "llm"
+    },
+    {
+      "source_id": "mountain_contour_canal",
+      "source_name": "盘山渠道",
+      "selected_ids": [
+        "three_dimensional_relief_maps"
+      ],
+      "method": "llm"
+    },
+    {
+      "source_id": "repeating_crossbow",
+      "source_name": "连弩",
+      "selected_ids": [],
+      "method": "llm"
+    },
+    {
+      "source_id": "synthetic_steel",
+      "source_name": "合成钢",
+      "selected_ids": [],
+      "method": "llm"
+    },
+    {
+      "source_id": "horse_yoke",
+      "source_name": "马鞅",
+      "selected_ids": [
+        "wheelbarrow"
+      ],
+      "method": "llm"
+    },
+    {
+      "source_id": "animal_powered_grinding_cart",
+      "source_name": "磨车",
+      "selected_ids": [],
+      "method": "llm"
+    },
+    {
+      "source_id": "ink_from_petroleum_soot",
+      "source_name": "油墨",
+      "selected_ids": [],
+      "method": "llm"
+    },
+    {
+      "source_id": "watertight_compartments",
+      "source_name": "水密隔舱",
+      "selected_ids": [],
+      "method": "llm"
+    },
+    {
+      "source_id": "early_chinese_match",
+      "source_name": "非摩擦火柴",
+      "selected_ids": [],
+      "method": "llm"
+    },
+    {
+      "source_id": "kite_human_flight",
+      "source_name": "风筝载人飞行",
+      "selected_ids": [],
+      "method": "llm"
+    },
+    {
+      "source_id": "foot_triggered_automatic_door",
+      "source_name": "脚启动的自动门",
+      "selected_ids": [
+        "chinese_escapement_mechanism"
+      ],
+      "method": "llm"
+    },
+    {
+      "source_id": "ancient_chinese_gas_container",
+      "source_name": "气瓶",
+      "selected_ids": [],
+      "method": "llm"
+    },
+    {
+      "source_id": "paper_money",
+      "source_name": "纸币",
+      "selected_ids": [],
+      "method": "heuristic"
+    },
+    {
+      "source_id": "light_transmitting_mirror",
+      "source_name": "透光镜",
+      "selected_ids": [],
+      "method": "llm"
+    },
+    {
+      "source_id": "zhaozhou_bridge",
+      "source_name": "单孔敞肩坦弧石拱桥",
+      "selected_ids": [],
+      "method": "llm"
+    },
+    {
+      "source_id": "chinese_escapement_mechanism",
+      "source_name": "擒纵器",
+      "selected_ids": [],
+      "method": "llm"
+    },
+    {
+      "source_id": "leeboard",
+      "source_name": "披水板",
+      "selected_ids": [],
+      "method": "llm"
+    },
+    {
+      "source_id": "automatic_wine_boat_with_mechanical_figures",
+      "source_name": "自行舟搭载机械呈杯、倒酒木俑",
+      "selected_ids": [
+        "foot_triggered_automatic_door"
+      ],
+      "method": "llm"
+    },
+    {
+      "source_id": "playing_cards",
+      "source_name": "纸牌",
+      "selected_ids": [
+        "mahjong"
+      ],
+      "method": "llm"
+    },
+    {
+      "source_id": "tofu",
+      "source_name": "豆腐",
+      "selected_ids": [],
+      "method": "llm"
+    },
+    {
+      "source_id": "menu_in_song_dynasty",
+      "source_name": "菜单",
+      "selected_ids": [],
+      "method": "llm"
+    },
+    {
+      "source_id": "continuous_chain_drive",
+      "source_name": "不间断链条传送动力",
+      "selected_ids": [
+        "water_powered_astronomical_clock_tower"
+      ],
+      "method": "llm"
+    },
+    {
+      "source_id": "double_gate_sluice",
+      "source_name": "斗门水闸",
+      "selected_ids": [],
+      "method": "llm"
+    },
+    {
+      "source_id": "fireworks",
+      "source_name": "烟花",
+      "selected_ids": [
+        "fire_dragon_manual"
+      ],
+      "method": "llm"
+    },
+    {
+      "source_id": "double_piston_gunpowder_flamethrower",
+      "source_name": "双活塞、火药启动的火焰喷射器",
+      "selected_ids": [],
+      "method": "llm"
+    },
+    {
+      "source_id": "hand_cannon",
+      "source_name": "手铳",
+      "selected_ids": [],
+      "method": "llm"
+    },
+    {
+      "source_id": "landmine",
+      "source_name": "地雷",
+      "selected_ids": [
+        "naval_mine"
+      ],
+      "method": "llm"
+    },
+    {
+      "source_id": "earliest_printed_map",
+      "source_name": "最早印刷地图",
+      "selected_ids": [
+        "movable_type"
+      ],
+      "method": "llm"
+    },
+    {
+      "source_id": "fire_dragon_manual",
+      "source_name": "火龙经",
+      "selected_ids": [
+        "naval_mine"
+      ],
+      "method": "llm"
+    },
+    {
+      "source_id": "naval_mine",
+      "source_name": "水雷",
+      "selected_ids": [],
+      "method": "heuristic"
+    },
+    {
+      "source_id": "pig_bristle_toothbrush",
+      "source_name": "猪鬃牙刷",
+      "selected_ids": [],
+      "method": "llm"
+    },
+    {
+      "source_id": "mahjong",
+      "source_name": "麻将",
+      "selected_ids": [],
+      "method": "heuristic"
+    },
+    {
+      "source_id": "artemisinin_antimalarial_properties",
+      "source_name": "青蒿素的抗疟性质",
+      "selected_ids": [],
+      "method": "heuristic"
+    },
+    {
+      "source_id": "hybrid_rice_varieties",
+      "source_name": "多样种类的杂交水稻",
+      "selected_ids": [],
+      "method": "heuristic"
+    },
+    {
+      "source_id": "jade_ritual_objects",
+      "source_name": "玉礼器",
+      "selected_ids": [
+        "alligator_drum",
+        "taotie_motif",
+        "rectangular_coffin_and_outer_coffin"
+      ],
+      "method": "llm"
+    },
+    {
+      "source_id": "rectangular_coffin_and_outer_coffin",
+      "source_name": "长方形棺椁",
+      "selected_ids": [
+        "boat_shaped_wooden_coffin"
+      ],
+      "method": "llm"
+    },
+    {
+      "source_id": "alligator_drum",
+      "source_name": "鼍鼓",
+      "selected_ids": [
+        "taotie_motif",
+        "rectangular_coffin_and_outer_coffin"
+      ],
+      "method": "llm"
+    },
+    {
+      "source_id": "raw_lacquer",
+      "source_name": "生漆",
+      "selected_ids": [],
+      "method": "llm"
+    },
+    {
+      "source_id": "ancient_chinese_fork",
+      "source_name": "餐叉",
+      "selected_ids": [
+        "chopsticks"
+      ],
+      "method": "llm"
+    },
+    {
+      "source_id": "three_legged_pottery",
+      "source_name": "三足陶器",
+      "selected_ids": [
+        "raw_lacquer",
+        "pottery_burial_urn"
+      ],
+      "method": "llm"
+    },
+    {
+      "source_id": "turtle_shell_divination",
+      "source_name": "龟卜",
+      "selected_ids": [],
+      "method": "llm"
+    },
+    {
+      "source_id": "triangular_plow",
+      "source_name": "三角犁",
+      "selected_ids": [
+        "heavy_iron_plow_with_moldboard"
+      ],
+      "method": "llm"
+    },
+    {
+      "source_id": "taotie_motif",
+      "source_name": "饕餮",
+      "selected_ids": [
+        "raw_lacquer"
+      ],
+      "method": "llm"
+    },
+    {
+      "source_id": "salt_use_and_monopoly",
+      "source_name": "用盐",
+      "selected_ids": [
+        "knife_money"
+      ],
+      "method": "llm"
+    },
+    {
+      "source_id": "silk",
+      "source_name": "丝绸",
+      "selected_ids": [
+        "loom"
+      ],
+      "method": "llm"
+    },
+    {
+      "source_id": "soybean_cultivation",
+      "source_name": "大豆种植",
+      "selected_ids": [
+        "triangular_plow"
+      ],
+      "method": "llm"
+    },
+    {
+      "source_id": "ancient_chinese_steamer",
+      "source_name": "蒸锅",
+      "selected_ids": [],
+      "method": "llm"
+    },
+    {
+      "source_id": "boat_shaped_wooden_coffin",
+      "source_name": "舟形木棺",
+      "selected_ids": [
+        "turtle_shell_divination"
+      ],
+      "method": "llm"
+    },
+    {
+      "source_id": "pottery_burial_urn",
+      "source_name": "瓮棺",
+      "selected_ids": [
+        "rectangular_coffin_and_outer_coffin"
+      ],
+      "method": "llm"
+    },
+    {
+      "source_id": "acupuncture_therapy",
+      "source_name": "针灸",
+      "selected_ids": [],
+      "method": "llm"
+    },
+    {
+      "source_id": "ancient_chinese_alcoholic_beverage",
+      "source_name": "醴酒",
+      "selected_ids": [],
+      "method": "llm"
+    },
+    {
+      "source_id": "bianzhong_bronze_bells",
+      "source_name": "编钟",
+      "selected_ids": [],
+      "method": "llm"
+    },
+    {
+      "source_id": "cast_iron",
+      "source_name": "铸铁",
+      "selected_ids": [
+        "iron_melting_furnace",
+        "refining_furnace"
+      ],
+      "method": "llm"
+    },
+    {
+      "source_id": "ancient_chinese_blast_furnace",
+      "source_name": "高炉",
+      "selected_ids": [
+        "water_powered_bellows"
+      ],
+      "method": "llm"
+    },
+    {
+      "source_id": "iron_melting_furnace",
+      "source_name": "熔铁炉",
+      "selected_ids": [
+        "ancient_chinese_blast_furnace",
+        "refining_furnace"
+      ],
+      "method": "llm"
+    },
+    {
+      "source_id": "ancient_chinese_football",
+      "source_name": "蹴鞠",
+      "selected_ids": [
+        "chinese_chess"
+      ],
+      "method": "llm"
+    },
+    {
+      "source_id": "chopsticks",
+      "source_name": "筷子",
+      "selected_ids": [],
+      "method": "llm"
+    },
+    {
+      "source_id": "handheld_crossbow",
+      "source_name": "手持弩",
+      "selected_ids": [
+        "crossbow_trigger_mechanism"
+      ],
+      "method": "llm"
+    },
+    {
+      "source_id": "human_powered_traction_trebuchet",
+      "source_name": "牵引抛石机",
+      "selected_ids": [
+        "repeating_crossbow"
+      ],
+      "method": "llm"
+    },
+    {
+      "source_id": "kite",
+      "source_name": "风筝",
+      "selected_ids": [
+        "kite_human_flight"
+      ],
+      "method": "llm"
+    },
+    {
+      "source_id": "pinhole_imaging",
+      "source_name": "小孔成像",
+      "selected_ids": [],
+      "method": "llm"
+    },
+    {
+      "source_id": "dougong_bracket",
+      "source_name": "斗栱",
+      "selected_ids": [],
+      "method": "llm"
+    },
+    {
+      "source_id": "loom",
+      "source_name": "织布机",
+      "selected_ids": [
+        "transmission_belt"
+      ],
+      "method": "llm"
+    },
+    {
+      "source_id": "knife_money",
+      "source_name": "刀币",
+      "selected_ids": [],
+      "method": "llm"
+    },
+    {
+      "source_id": "folding_umbrella",
+      "source_name": "折叠伞",
+      "selected_ids": [],
+      "method": "llm"
+    },
+    {
+      "source_id": "ancient_chinese_zither",
+      "source_name": "古琴",
+      "selected_ids": [],
+      "method": "llm"
+    },
+    {
+      "source_id": "heavy_iron_plow_with_moldboard",
+      "source_name": "重型带犁板铁犁",
+      "selected_ids": [
+        "straight_beam_plow",
+        "curved_shaft_plow"
+      ],
+      "method": "llm"
+    },
+    {
+      "source_id": "curved_shaft_plow",
+      "source_name": "曲辕犁",
+      "selected_ids": [],
+      "method": "llm"
+    },
+    {
+      "source_id": "straight_beam_plow",
+      "source_name": "直辕犁",
+      "selected_ids": [
+        "curved_shaft_plow"
+      ],
+      "method": "llm"
+    },
+    {
+      "source_id": "karez_irrigation_system",
+      "source_name": "坎儿井",
+      "selected_ids": [
+        "dujiangyan_irrigation_system"
+      ],
+      "method": "llm"
+    },
+    {
+      "source_id": "water_wheel_for_irrigation",
+      "source_name": "筒车",
+      "selected_ids": [
+        "curved_shaft_plow"
+      ],
+      "method": "llm"
+    },
+    {
+      "source_id": "dujiangyan_irrigation_system",
+      "source_name": "都江堰",
+      "selected_ids": [
+        "mountain_contour_canal"
+      ],
+      "method": "llm"
+    },
+    {
+      "source_id": "celestial_globe",
+      "source_name": "浑象",
+      "selected_ids": [
+        "water_powered_celestial_globe"
+      ],
+      "method": "llm"
+    },
+    {
+      "source_id": "water_powered_astronomical_clock_tower",
+      "source_name": "水运仪象台",
+      "selected_ids": [],
+      "method": "heuristic"
+    },
+    {
+      "source_id": "south_pointing_chariot",
+      "source_name": "指南车",
+      "selected_ids": [],
+      "method": "llm"
+    },
+    {
+      "source_id": "wooden_ox_and_gliding_horse",
+      "source_name": "木牛流马",
+      "selected_ids": [],
+      "method": "llm"
+    },
+    {
+      "source_id": "pulley",
+      "source_name": "滑轮",
+      "selected_ids": [
+        "water_powered_mill",
+        "chain_drive"
+      ],
+      "method": "llm"
+    },
+    {
+      "source_id": "chain_drive",
+      "source_name": "链条传动",
+      "selected_ids": [
+        "continuous_chain_drive"
+      ],
+      "method": "llm"
+    },
+    {
+      "source_id": "gear_transmission",
+      "source_name": "齿轮传动",
+      "selected_ids": [
+        "chain_drive",
+        "pulley"
+      ],
+      "method": "llm"
+    },
+    {
+      "source_id": "water_powered_mill",
+      "source_name": "水力磨坊",
+      "selected_ids": [
+        "water_powered_bellows",
+        "chain_drive"
+      ],
+      "method": "llm"
+    },
+    {
+      "source_id": "wind_powered_mill",
+      "source_name": "风力磨坊",
+      "selected_ids": [],
+      "method": "llm"
+    },
+    {
+      "source_id": "crossbow_trigger_mechanism",
+      "source_name": "弩机",
+      "selected_ids": [
+        "repeating_crossbow"
+      ],
+      "method": "llm"
+    }
+  ]
+}

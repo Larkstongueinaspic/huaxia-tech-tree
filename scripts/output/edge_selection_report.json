@@ -1,0 +1,12 @@
+{
+  "node_count": 108,
+  "edge_count": 63,
+  "zero_out_degree_nodes": 49,
+  "avg_out_degree": 0.5833,
+  "max_out_degree": 2,
+  "selection_count": 108,
+  "llm_count": 100,
+  "heuristic_count": 8,
+  "selection_output": "/Users/bo_yu/Documents/bupt/l_ds_design/huaxia-tech-tree/scripts/output/edge_selections.json",
+  "final_output": "/Users/bo_yu/Documents/bupt/l_ds_design/huaxia-tech-tree/scripts/output/final_nodes_with_edges.json"
+}
