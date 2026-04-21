@@ -251,11 +251,10 @@ function TreeCodexPanel({ activeEra, selectedNode, lineage, categoryStats, total
       className={`${styles.treeTitleBlock} ${!isOpen ? styles.panelClosed : ""}`}
       aria-hidden={!isOpen}
     >
-      <p className={styles.kicker}>科技树主卷</p>
-      <h2>器物相因，技艺相生</h2>
-      <p>
-        保留有向科技树的节点、边与传承关系；以新版卷轴材质承载图谱，点击任一技艺即可展开前驱与后继的溯源脉络。
-      </p>
+      <h2 className={styles.codexTitle}>
+        <span>器物相因</span>
+        <span>技艺相生</span>
+      </h2>
 
       <div className={styles.codexSection}>
         <span>当前卷段</span>
