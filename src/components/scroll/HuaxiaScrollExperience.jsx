@@ -193,8 +193,11 @@ function ScrollContainer({ children, activeEraName, onSearch, scrollRef }) {
       <div className={styles.stageBackdrop} aria-hidden="true" />
       <header className={styles.manuscriptHeader}>
         <div className={styles.headerBrand}>
-          <h1>华夏文明科技树</h1>
-          <span>Huaxia Civilization Tech Tree</span>
+          <img src={`${publicPath}/icon2.png`} alt="" aria-hidden="true" />
+          <div className={styles.headerTitleText}>
+            <h1>华夏文明科技树</h1>
+            <span>Huaxia Civilization Tech Tree</span>
+          </div>
         </div>
         <div className={styles.headerActions}>
           <span>{activeEraName}</span>
