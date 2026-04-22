@@ -149,11 +149,25 @@ function ScrollContainer({ children, activeEraName, onSearch, scrollRef }) {
       className={styles.scrollStage}
       style={{
         "--calligraphy-image": `url("${publicPath}/images/backgrounds/cal_2.jpg")`,
-        // "--scroll-paper-image": `url("${publicPath}/images/backgrounds/bg_scroll_1.jpg")`,
+        "--scroll-paper-image": `url("${publicPath}/images/backgrounds/tsing_ming.jpg")`,
         "--scroll-scene-image": `url("${publicPath}/images/backgrounds/tsing_ming.jpg")`,
       }}
     >
       <div className={styles.stageBackdrop} aria-hidden="true" />
+      <div className={styles.assetPreload} aria-hidden="true">
+        <img
+          src={`${publicPath}/images/backgrounds/bg_scroll_1.jpg`}
+          alt=""
+          decoding="async"
+          fetchPriority="high"
+        />
+        <img
+          src={`${publicPath}/images/backgrounds/tsing_ming.jpg`}
+          alt=""
+          decoding="async"
+          fetchPriority="high"
+        />
+      </div>
       <header className={styles.manuscriptHeader}>
         <div className={styles.headerBrand}>
           <img src={`${publicPath}/icon2.png`} alt="" aria-hidden="true" />

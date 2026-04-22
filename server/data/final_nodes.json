@@ -1510,7 +1510,6 @@
     "sig": "《九章算术》记载负数，刘徽用算筹系统表示，推动早期数学发展",
     "id": "negative_number_notation",
     "outEdges": [
-      "abacus_bailong"
     ],
     "era": "东汉"
   },

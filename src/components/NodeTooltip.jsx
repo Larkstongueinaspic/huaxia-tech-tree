@@ -11,18 +11,37 @@ import './NodeTooltip.css';
 
 export function NodeTooltip({ node, CAT, position, isVisible }) {
   const tooltipRef = useRef(null);
+  const [renderedNode, setRenderedNode] = useState(node);
+  const [renderedPosition, setRenderedPosition] = useState(position);
   const [adjustedPosition, setAdjustedPosition] = useState(position);
+  const [displayState, setDisplayState] = useState(
+    isVisible && node ? 'visible' : 'hidden'
+  );
+
+  useEffect(() => {
+    if (isVisible && node) {
+      setRenderedNode(node);
+      setRenderedPosition(position);
+      setAdjustedPosition(position);
+      setDisplayState('visible');
+      return;
+    }
+
+    if (renderedNode) {
+      setDisplayState('leaving');
+    }
+  }, [isVisible, node, position, renderedNode]);
 
   // 根据视口边界调整 Tooltip 位置
   useEffect(() => {
-    if (!isVisible || !tooltipRef.current) return;
+    if (displayState !== 'visible' || !renderedNode || !tooltipRef.current) return;
 
     const rect = tooltipRef.current.getBoundingClientRect();
     const tooltipWidth = rect.width || 280;
-    const newPos = { ...position };
+    const newPos = { ...renderedPosition };
 
     newPos.x = Math.min(
-      Math.max(position.x + 12, 8),
+      Math.max(renderedPosition.x + 12, 8),
       window.innerWidth - tooltipWidth - 8
     );
 
@@ -38,30 +57,40 @@ export function NodeTooltip({ node, CAT, position, isVisible }) {
 
     // 检查左边界
     setAdjustedPosition(newPos);
-  }, [isVisible, position]);
+  }, [displayState, renderedNode, renderedPosition]);
 
-  if (!isVisible || !node) return null;
+  if (!renderedNode) return null;
 
-  const catInfo = CAT[node.cat];
+  const catInfo = CAT[renderedNode.cat];
   const catColor = catInfo?.color || '#c8a045';
-  const catLabel = catInfo?.label || node.cat;
+  const catLabel = catInfo?.label || renderedNode.cat;
 
   // 格式化年份
-  const yearStr = !node.year ? '' : node.year < 0 ? `${Math.abs(node.year)} BC` : `${node.year} AD`;
+  const yearStr = !renderedNode.year
+    ? ''
+    : renderedNode.year < 0
+      ? `${Math.abs(renderedNode.year)} BC`
+      : `${renderedNode.year} AD`;
 
   return createPortal(
     <div
       ref={tooltipRef}
-      className="node-tooltip"
+      className={`node-tooltip node-tooltip--${displayState}`}
       style={{
         left: `${adjustedPosition.x}px`,
         top: `${adjustedPosition.y}px`,
       }}
+      onAnimationEnd={() => {
+        if (displayState === 'leaving') {
+          setRenderedNode(null);
+          setDisplayState('hidden');
+        }
+      }}
     >
       <div className="node-tooltip-content">
         <div className="node-tooltip-header">
-          <div className="node-tooltip-name">{node.name}</div>
-          {node.en && <div className="node-tooltip-en">{node.en}</div>}
+          <div className="node-tooltip-name">{renderedNode.name}</div>
+          {renderedNode.en && <div className="node-tooltip-en">{renderedNode.en}</div>}
         </div>
 
         <div className="node-tooltip-meta">
@@ -74,16 +103,16 @@ export function NodeTooltip({ node, CAT, position, isVisible }) {
           {yearStr && <span className="node-tooltip-year">{yearStr}</span>}
         </div>
 
-        {node.desc && (
+        {renderedNode.desc && (
           <div className="node-tooltip-desc">
-            {node.desc.slice(0, 80)}
-            {node.desc.length > 80 ? '...' : ''}
+            {renderedNode.desc.slice(0, 80)}
+            {renderedNode.desc.length > 80 ? '...' : ''}
           </div>
         )}
 
-        {node.inv && (
+        {renderedNode.inv && (
           <div className="node-tooltip-inv">
-            <strong>发明者：</strong>{node.inv}
+            <strong>发明者：</strong>{renderedNode.inv}
           </div>
         )}
       </div>
